@@ -1,0 +1,61 @@
+
+<!-- 留言版 -->
+<h1  class="main-title"><span><?php echo $this->title; ?></span><img src="/images/per-title-icon.png"></h1>
+<div class="message_list">
+<!-- 输出留言信息 start -->
+<?php for ($i = 0; $i < count($this->mes['mes']); $i++) { ?>
+	<dl class='messages_item'>
+		<dt class="message_item_avatar">
+			<div class="message_item_img_wrapper"><a href="<?php echo $this->mes['muser'][$i]['userUrl']; ?>"><img  src="<?php echo $this->mes['muser'][$i]['face_path']; ?>"></a></div>
+		</dt>
+		<dd class='message_item_content'>
+			<div class='message_item_inner'>
+				<p class='floor_count' id="<?php echo $this->mes['mes'][$i]['mes_id']; ?>"><?php echo $i+$this->pageSize*($this->page-1)+1; ?>楼</p>
+				<p class='message_content'><?php echo $this->mes['mes'][$i]['mes_content']; ?></p>
+				<div class=>
+					<span class='message_item_time'><?php echo $this->mes['mes'][$i]['mes_time']; ?></span>
+					<a href="javascript:void(0)" class='reply_btn'>回复TA</a>
+					<a href="<?php echo $this->mes['muser'][$i]['userUrl']; ?>" class='visitor_name'><?php echo $this->mes['muser'][$i]['user_name']; ?></a>
+				</div>
+			</div>
+			<div class="clear"></div>
+			 <!-- message_item_comment_wrapper 用于生成回复框 -->
+			<div class='message_item_comment_wrapper'>
+			</div>
+			 <!-- reply_msg_wrap 留言回复内容 -->
+			 <?php if ($this->reply['reply'][$i]) { ?>
+			 <?php for ($j=0; $j < count($this->reply['reply'][$i]); $j++) { ?>
+			<dl class="message_item_comment reply_msg_wrap">
+				<dt class="message_item_avatar reply_msg_ava">
+					<div class="message_item_img_wrapper">
+						<a href="<?php echo $this->reply['ruser'][$i][$j]['userUrl']; ?>"><img src="<?php echo $this->reply['ruser'][$i][$j]['face_path']; ?>"></a>
+					</div>
+				</dt>
+				<dd class="message_item_content reply_msg_inner">
+					<div class="message_item_inner">
+						<p class="message_content reply_msg"><?php echo $this->reply['reply'][$i][$j]['reply_content']; ?></p>
+						<div>
+							<span style="margin-left:0px;" class="message_item_time"><?php echo $this->reply['reply'][$i][$j]['reply_time']; ?></span>
+							<a href="<?php echo $this->reply['ruser'][$i][$j]['userUrl']; ?>" class="visitor_name user_name"><?php echo $this->reply['ruser'][$i][$j]['user_name']; ?></a>
+						</div>
+					</div>
+				</dd>
+			</dl>
+			<?php } ?>
+			<?php } ?>
+			<div class="clear"></div>
+		</dd>
+	</dl>
+<?php } ?>
+<!-- 输出留言信息 end -->
+</div>
+<div class="turn-page-wrap">
+	<ul class="turn_page_ul">
+		<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+		<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+		<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+		<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+		<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+	</ul>
+</div>
+				

@@ -1,0 +1,93 @@
+<style type="text/css">
+	article{
+		font-size: 10px;
+	}
+	.pagination{
+		float: right;
+	}
+</style>
+<script type="text/javascript" src="/js/utils.js"></script>
+<article>
+	<div class="text-section">
+		<h1>全部发布的<b>卖书</b>信息</h1>
+		<p>点击功能标签进行管理</p>
+	</div>
+	<div class="text-section">
+		<ul class="nav nav-tabs">
+			<li class="<?php echo $this->pubingClass; ?>">
+				<a href="/admin/publish/type/1">交易中</a>
+			</li>
+			<li class="<?php echo $this->pubedClass; ?>">
+				<a href="/admin/publish/type/2">已完成的交易</a>
+			</li>
+			<li>
+				<a href="/admin/userpublish/type/3">用户交易中</a>
+			</li>
+			<li>
+				<a href="/admin/userpublish/type/4">用户完成交易</a>
+			</li>
+		</ul>
+	</div>
+	<table class="table table-hover table-striped table-bordered table-condensed">
+		<thead>
+			<th>交易ID</th>
+			<th>书籍ID</th>
+			<th>书名</th>
+			<th>封面</th>
+			<th>出版社</th>
+			<th>信息</th>
+			<th>原价</th>
+			<th>现价</th>
+			<th>学院</th>
+			<th>提交时间</th>
+			<th>过期时间</th>
+			<th>交易状态</th>
+			<th>用户名</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<!-- 书籍信息输出 start -->
+			<?php for ($i=0; $i < count($this->publish['book']); $i++) { ?>
+			<tr>
+				<td><?php echo $this->publish['sale'][$i]['sale_id']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['book_id']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['book_name']; ?></td>
+				<td><img onload="$(this).resizeImage2(true, 30,30)" src="<?php echo $this->publish['book'][$i]['photo_path']; ?>"></td>
+				<td><?php echo $this->publish['book'][$i]['publish']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['infor']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['former_price']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['now_price']; ?></td>
+				<td><?php echo $this->publish['book'][$i]['book_col']; ?></td>
+				<td><?php echo $this->publish['sale'][$i]['start_time']; ?></td>
+				<td><?php echo $this->publish['sale'][$i]['end_time']; ?></td>
+				<td><?php echo $this->publish['sale'][$i]['sale_state']; ?></td>
+				<td><?php echo $this->publish['user'][$i]['user_name']; ?></td>
+				<td>
+					<?php if ($this->pubingClass) { ?>
+					<a class="btn btn-small" href="javascript:void(0);" title="修改交易状态"><i class="icon-arrow-right publishing"></i>2</a>
+					<?php } ?>
+					<?php if ($this->pubedClass) { ?>
+					<a class="btn btn-small" href="javascript:void(0);" title="修改交易状态">1<i class="icon-arrow-left published"></i></a>&nbsp;&nbsp;
+					<a class="btn btn-small" href="javascript:void(0);" title="修改交易状态"><i class="icon-trash publish"></i>Del</a>
+					<?php } ?>
+				</td>
+			</tr>
+			<?php } ?>
+			<!-- 书籍信息输出 end -->
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="span4"></div>
+	    <div class="span5">
+	    	<div class="pagination">
+				<ul>
+					<li><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>"><i class="icon-arrow-left"></i></a></li>
+					<li><a href="javascript:void(0)"><?php echo $this->page; ?>/<?php echo $this->pages; ?></a></li>
+					<li><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>"><i class="icon-arrow-right"></i></a></li>
+					<li><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</article>

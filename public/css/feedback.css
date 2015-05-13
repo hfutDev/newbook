@@ -1,0 +1,157 @@
+/*将footer钉在底部*/
+body,html{
+	height: 100%;
+}
+.wrap{
+	position: relative;
+	min-height: 100%;
+}
+#footer-wrap{
+	left: 0px;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+#content{
+	margin-bottom: 20px;
+}
+.left{
+	width: 712px;
+	overflow: hidden;
+	float: left;
+	margin-right: 20px;
+}
+.title-h1{
+	width: 94%;
+	margin-left: 3%;
+	border-bottom: 5px solid #ec7150;
+	font-size: 16px;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	color: #787070;
+}
+.title-h1-text{
+	margin-left: 20px;
+	float: left;
+}
+.msg-board{
+	margin: 20px  6px 0 10%;
+	width: 84%;
+}
+.msg-board h3{
+	text-align: left;
+	color: #A54520;
+	font-size: 13px;
+}
+.msg-board .textarea-wrap
+{	
+	width: 100%;
+	position: relative;
+	height: 154px;
+	text-indent: 0px;
+	font-size: 0px;
+	padding: 0px;
+	margin:0px;
+}
+.textarea-wrap textarea{
+	overflow: hidden;
+	text-indent: 0.5em;
+	width: 100%;
+	border:none;
+	font-size: 14px;
+	letter-spacing: 2px;
+	font-family: "微软雅黑";
+	height: 124px;
+	*height: 120px;
+	margin: 0px;
+	padding: 0px;
+	resize:none;
+	outline: none;
+	padding-top: 4px;
+	word-wrap:break-word;
+	box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+	-webkit-box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+	-moz-box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+}
+.wordCheck{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	border:none;
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	cursor: text;
+	text-align: right;
+	color: #ec7150;
+	font-size: 14px;
+}
+.wordChange{
+	font-size: 26px;
+	font-family: "Georgia";
+}
+.sumbit-btn{
+	width: 100%;
+	text-align: right;
+	padding-right: 15px;
+	margin-top: 8px;
+}
+.feed-sumbit-btn{
+	border-radius: 3px;
+	background: #ec7150;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+	padding: 4px 6px;
+}
+/*RITHT*/
+/* 热销榜单*/
+.right{
+	margin-top: 15px;
+	float: left;
+	width: 254px;
+	overflow: hidden;
+}
+.right h2{
+	font-size: 19px;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;	
+}
+.contact-wrap{
+	text-align: left;
+	border: 2px solid #ed7858;
+	padding: 10px 8px 10px;
+}
+.contact-wrap dd{
+	color: #ec7150;
+	font-size: 14px;
+}
+.contact-wrap dt{
+	color: #030330;
+	font-family: '微软雅黑';
+	font-size: 15px;
+	margin-left: 2em;
+}
+#validation_code_4,#code{
+	float: left;
+	margin-left: 9px;
+
+}
+.submit-p{
+	margin-top: 10px;
+}
+.feed-sumbit-btn{
+	float: right;
+	margin-right: 20px;
+}
+.val-code a{
+	line-height: 28px;
+	display: inline-block;
+	float: left;
+	margin-left: 8px;
+}
+.val-code{
+	position: relative;
+}

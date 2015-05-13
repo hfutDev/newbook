@@ -1,0 +1,72 @@
+<link rel="stylesheet" type="text/css" href="/css/topublish.css">
+<link rel="stylesheet" type="text/css" href="/css/todonate.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.3.custom.min.css">
+<script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- <script type="text/javascript" src="/js/plugin-UpLoadFileCheck.js"></script>
+<script type="text/javascript" src="/js/toseek_publish.js"></script> -->
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="donate-form-wrap">
+		<h2 class="title-h1">
+			<span class="title-h1-text">获赠书籍信息</span>
+			<span class="required-item">*为必填项</span>
+			<div class="clear"></div>
+		</h2>
+		<form action="/donate/doneechk" method="post" enctype="multipart/form-data" name='donate-form' class="donate-form">
+			<p>
+				<label style="width:auto;"> 书名：<?php echo $this->donateInfo['book_name']; ?></label><br/>
+				<input type="hidden" name="drift-id" value="<?php echo $this->donateInfo['donate_id']; ?>">
+			<p/>
+			<p class='book-name-p'>
+				<label for="doneename">*获赠者姓名</label><input type="text" name='doneename' id='doneename' tabindex="23" /><i></i>
+			</p>
+			<p>
+				<label for="sex">*获赠者性别</label>
+				<select name="sex" class="sex">
+					<option value="boy" >男</option>
+					<option value="girl">女</option>
+				</select>
+				<i></i>
+			</p>
+			<p class='adress'>
+				<label for="address">*获赠者地址</label><input type="text" name='address' id='address' tabindex="24" /><i></i>
+			</p>
+			<p class="expiration-date-p">
+				<label for="expiration-date">*获赠者生日</label><input name="expiration-date" id="expiration-date" type="text" tabindex="31" onkeydown="return false" onkeyup="return false"  /><i></i>
+			</p>
+			<div class="book-des-p">
+				<label for="book-des-text">*获赠寄语</label>
+				<div class="textarea-wrap">
+					<textarea id="book-des-text" name="wish" class="book-des-text-2"  placeholder="写下您的捐赠寄语..." tabindex="27"></textarea>
+					<span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+				<i style='top:60px;'></i>
+			</div>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code_2">*请确认</label>
+					<!-- <input type="text" tabindex="29" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i> -->
+				</div>
+				<div class="feedback-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn feedback-sumbit-btn" name="feedback-sumbit-btn" tabindex="34" value="确认提交" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	$(function() {
+		$( "#expiration-date" ).datepicker({ 
+			minDate: 0, 
+			maxDate: "+1D", 
+			minDate: new Date(1913, 1 - 1, 1),
+			dateFormat: "yy-mm-dd",
+			firstDay: 1,
+			inline:true,
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+</script>
+

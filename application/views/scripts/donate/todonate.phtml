@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css" href="/css/topublish.css">
+<link rel="stylesheet" type="text/css" href="/css/todonate.css">
+<script type="text/javascript" src="/js/toseek_publish.js"></script>
+<script type="text/javascript" src="/js/plugin-UpLoadFileCheck.js"></script>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="donate-form-wrap">
+		<h2 class="title-h1">
+			<span class="title-h1-text">捐赠书籍信息</span>
+			<span class="required-item">*为必填项</span>
+			<div class="clear"></div>
+		</h2>
+		<form action="/donate/todonatechk" method="post" enctype="multipart/form-data" name='donate-form' class="donate-form">
+			<p class='book-name-p'>
+				<label for="donatename">*捐赠者姓名</label><input type="text" name='donatename' id='donatename' tabindex="23" /><i></i>
+			</p>
+			<p class='book-name-p'>
+				<label for="bookname">*捐赠书名</label><input type="text" name='bookname' id='bookname' tabindex="24" /><i></i>
+			</p>
+			<p>
+				<label for="college">*捐赠者学院</label>
+				<select name="college" class="for-xueyuan">
+				<!-- 学院输出 start -->
+				<?php foreach ($this->col as $colValue) { ?>
+					<option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
+				<?php } ?>
+				<!-- 学院输出 end -->
+				</select>
+				<i></i>
+			</p>
+			<p class="book-cover-p">
+				<label for="">*书籍图片</label><a href="javascript:void(0)">上传图片<input name="book-cover" type="file" class="absol-0-0 update-file" onchange="updateFileCheck(this)"
+				/></a><i>图片须小于1M,格式为jpg,gif,png,jpeg</i>
+			</p>
+			<!-- <p class="tel-p">
+				<label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="26" /><i>电话会更新到你的个人信息</i>
+			</p> -->
+			<div class="book-des-p">
+				<label for="donor-msg-text">*捐赠寄语</label>
+				<div class="textarea-wrap">
+					<textarea id="donor-msg-text" data-sort="1" name="donator-wish" class="book-des-text-2"  placeholder="写下您的捐赠寄语..." tabindex="27"></textarea>
+					<span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+				<i style='top:60px;'></i>
+			</div>
+			<div class="book-des-p">
+				<label for="qingZhiLian-msg-text">*青志联寄语</label>
+				<div class="textarea-wrap">
+					<textarea id="qingZhiLian-msg-text" data-sort="2"  name="volunteer_wish" class="book-des-text-2"  placeholder="写下青志联的寄语..." tabindex="28"></textarea>
+					<span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+				<i style='top:60px;'></i>
+			</div>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code_2">*请确认</label>
+					<input type="text" tabindex="29" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+				</div>
+				<div class="donate-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn donate-sumbit-btn" name="donate-sumbit-btn" tabindex="34" value="确认捐赠" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</div>
+

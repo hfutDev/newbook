@@ -1,0 +1,104 @@
+
+<link rel="stylesheet" type="text/css" href="/css/toseek.css">
+<script type="text/javascript" src="/js/toseek_publish.js"></script>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="publish-form">
+		<h2 class="title-h1">
+			<span class="title-h1-text">发布求书信息</span>
+			<span class="required-item">*为必填项</span>
+			<div class="clear"></div>
+		</h2>
+		<form class="seek-form-wrap" method="post" action="/book/seekchk" name="toseek-form">
+			<h3 class="toseek-title">
+				<img src="/images/toSeeking-title02.png">	
+			</h3>
+			<p class='seek-book-name'>
+				<label for="bookname">*所求书名</label><input type="text" name='bookname' id='bookname' tabindex="100"/><i></i>
+			</p>
+			<p class="tel-p">
+				<label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="32" style="margin-left: 10px;"><i>电话会更新到个人信息</i>
+			</p>
+			<div class="lable-wrap">
+				<dl class="lable-box">
+					<dt>所求标签</dt>
+					<dd>
+						<ul class="label-box-ul">
+						<!-- 输出动态标签 start -->
+						<?php foreach ($this->hotLabel as $hotLabelValue) { ?>
+							<li><a href="<?php echo $hotLabelValue['url']; ?>" target="_blank"><span><?php echo $hotLabelValue['label_name']; ?></span></a>
+						<?php } ?>
+						<!-- 输出动态标签 end -->
+						</ul>
+					</dd>
+					<div class="clear"></div>
+				</dl>
+				<p class="cus-lable-p"><input tabindex="101" type="text" value="您还可以自定义不超过四个标签并以空格分割"class="cus-label" /><i></i></p>
+				<input type="hidden" name="get-lables" class="get-lables"/>
+				<div class="clear"></div>
+			</div>
+			<h3 class="toseek-title">
+				<img src="/images/toSeeking-title.png">	
+			</h3>
+			<div class="book-des-p">
+				<label for="book-des-text">*喊话内容</label><div class="textarea-wrap"><textarea id="book-des-text" name="book-des-text" class="book-des-text-1"  tabindex="102" placeholder="写下你对书籍的描述..."></textarea><span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">30</strong>/30</span></div>
+				<i style='top:30px;'></i>
+			</div>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code_2">*验证码</label>
+					<input type="text" tabindex="103" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a>
+					<i></i>
+				</div>
+				<div class="seek-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn seek-sumbit-btn" name="seek-sumbit-btn" tabindex="104" value="确认发布" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+	<div class="recommend-wrap">
+			<h2 class="title-h1">
+				<span class="title-h1-text">根据您的喊话内容，我们为您匹配出以下几本书，找到您心仪的那本了吗？</span>
+				<div class="clear"></div>
+			</h2>
+			<div class="spotlight-wrap">
+				<div class="slide-nav">
+					<div class="arrow-left prev" title="上一本">
+					</div>
+					<div class="arrow-right next" title="下一本">
+					</div>
+				</div>
+				<div id="spotlight-list" class="spotlight-list">
+					<ul class="spotlight-list-ul">
+					<!-- 最近发布书籍输出 start -->
+					<?php foreach ($this->relabook as $bValue) {?>
+						<li>
+							<a href="<?php echo $bValue['bookUrl']; ?>" target="_blank" title='点击查看详细信息'>
+								<img src="<?php echo $bValue['photo_path']; ?>">
+							</a>	
+							<p><a href="<?php echo $bValue['bookUrl']; ?>" title='点击查看详细信息'><?php echo $bValue['book_name']; ?></a></p>
+						</li>
+					<?php } ?>
+					<!-- 最近发布书籍输出 end -->
+					</ul>
+				</div>
+			</div>
+		</div>	
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".spotlight-wrap").Slide({
+		claNav: 'slide-nav',
+		claCon: 'spotlight-list-ul',
+			effect : "scroolLoop",
+			speed : 'slow',
+			timer : 3000,
+			steps:1
+	});
+	
+	$('.spotlight-list-ul img').resizeImage(true, 111,145); 
+	
+})
+</script>

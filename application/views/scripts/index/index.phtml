@@ -1,0 +1,204 @@
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+<script type="text/javascript" src="/js/index.js"></script>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="main-left">
+		<div id="FS-carousel">
+				<div id="carousel-pic-wrap">
+				<ul id="carousel-pic">
+				<li>
+					<a href="javascript:void(0)"><img src="/images/carousel-donate.jpg" alt="捐书籍 献爱心" /></a>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><img src="/images/carousel-drift.jpg" alt="漂流书籍 漂流知识" /></a>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><img src="/images/carousel-01.png" alt="工大人就上易书网" /></a>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><img src="/images/carousel-05.png" alt="大学生了没" /></a>
+				</li>
+				<!-- <li>
+					<a href="javascript:void(0)"><img src="/images/carousel-02.png" alt="毕业季，四年珍藏" /></a>
+				</li> -->
+				<!-- <li>
+					<a href="javascript:void(0)"><img src="/images/carousel-03.jpg" alt="我要当学霸" /></a>
+				</li> -->
+				<!-- <li>
+					<a href="javascript:void(0)"><img src="/images/carousel-04.png" alt="告别翡翠湖，易书活动" /></a>
+				</li> -->
+			</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div id="publish-list-wrap">
+			<div class="publish-list-title list-title">
+				<a class='main-bgCol-fontFam' href='/book/publish'><em>挥</em>泪割爱</a>
+				<img src="/images/Tuzki_l01.png" />
+				<p><a href='/book/publish'>更多</a></p>
+			</div>
+			<div class="publish-list">
+				<ul class="publish-list-ul">
+				<!-- 输出最近卖书信息  start -->
+				<?php for ($i = 0; $i < count($this->hotBook['book']); $i++) { ?>
+					<li>
+						<div class="book-list-item-box book-list-item-box-up">
+							<div class="book-list-item">
+								<div class="book-list-img-box-wrap">
+									<div class="book-list-img-box">
+									<a title="点击查看详情" href="<?php echo $this->hotBook['book'][$i]['bookUrl']; ?>" target="_blank"><img src="<?php echo $this->hotBook['book'][$i]['photo_path']; ?>"></a>
+								</div>
+								</div>
+								<div class="book-list-info">
+									<p title="<?php echo $this->hotBook['book'][$i]['book_name']; ?>"><i>书名:</i><span><?php echo $this->hotBook['book'][$i]['book_name']; ?></span></p>
+									<p><i>发布人:</i><span><?php echo $this->hotBook['user'][$i]['user_name']; ?></span></p>
+								</div>
+							</div>
+							<p class='price'>
+								<span class='going-price'>
+									<span>￥</span><strong><?php echo $this->hotBook['book'][$i]['now_price']; ?></strong>
+								</span>
+								<span class='original-price'>
+									<span>￥</span><strong><?php echo $this->hotBook['book'][$i]['former_price']; ?></strong>
+								</span>
+							</p>
+						</div>
+						<?php $i++; ?>
+						<div class="book-list-item-box book-list-item-box-up">
+							<div class="book-list-item">
+								<div class="book-list-img-box-wrap">
+									<div class="book-list-img-box">
+									<a title="点击查看详情" href="<?php echo $this->hotBook['book'][$i]['bookUrl']; ?>" target="_blank"><img src="<?php echo $this->hotBook['book'][$i]['photo_path']; ?>"></a>
+								</div>
+								</div>
+								<div class="book-list-info">
+									<p title="<?php echo $this->hotBook['book'][$i]['book_name']; ?>"><i>书名:</i><span><?php echo $this->hotBook['book'][$i]['book_name']; ?></span></p>
+									<p><i>发布人:</i><span><?php echo $this->hotBook['user'][$i]['user_name']; ?></span></p>
+								</div>
+							</div>
+							<p class='price'>
+								<span class='going-price'>
+									<span>￥</span><strong><?php echo $this->hotBook['book'][$i]['now_price']; ?></strong>
+								</span>
+								<span class='original-price'>
+									<span>￥</span><strong><?php echo $this->hotBook['book'][$i]['former_price']; ?></strong>
+								</span>
+							</p>
+						</div>
+					</li>
+					<?php } ?>
+					<!-- 输出最近卖书信息  end -->
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="main-right">
+		<div class="public-seak-btn">
+			<a href="/donate" target="_blank" class='photo-public-btn main-bgCol-fontFam main-right-width'><img src='/images/photo_icon.png' /><span>我要捐赠</span></a>
+			<a href="/drift" target="_blank" class='shouted-seak-btn main-bgCol-fontFam main-right-width'><img src='/images/trumpet_icon.png' /><span>我要读书</span></a>
+		</div>
+		<div class="float-text-wrap main-right-width">
+			<div class="float-text-inner">
+			<!-- 输出标签列表  start-->
+			<?php foreach ($this->hotLabel as $labelValue) { ?>
+				<a href='<?php echo $labelValue['labelUrl']; ?>' target="_blank"><?php echo $labelValue['label_name']; ?></a>
+			<?php } ?>
+			<!-- 输出专业列表  start-->
+			</div>
+			<img src="/images/Tuzki_r01.png">
+		</div>	
+		<div class="main-tab-wrap  main-right-width">
+			<div class="main-tab-inner">
+				<ul class="main-bgCol-fontFam nav-tab" id="myTab">
+						<li class="active"><a href="#shared-resource">最近喊话</a></li>
+		 				<li class="no-active"><a href="#recent-deal">正在交易</a></li>
+						<li class="no-active"><a href="#newest-comment">最近完成</a></li>
+						<div class="clear"></div>
+				</ul>
+				<div class="tab-content">
+				  <ul class="tab-pane  active" id="shared-resource">
+				  	<!-- 输出最近喊话  start -->
+				    <?php for ($i=0; $i < count($this->hotBuy['buy']); $i++) { ?>
+				  	<li><a href="/book/seek" title="<?php echo $this->hotBuy['user'][$i]['user_name']; ?>正在喊<?php echo $this->hotBuy['buy'][$i]['buy_content']; ?>">
+				  	<?php echo $this->hotBuy['user'][$i]['user_name']; ?>正在喊<?php echo $this->hotBuy['buy'][$i]['buy_content']; ?></a></li>
+				  	<?php } ?>
+				  	<!-- 输出最近喊话  end -->
+				  </ul>
+				  <ul class="tab-pane" id="recent-deal">
+				  <!-- 输出最近交易  start -->
+				  <?php for ($i=0; $i < 8; $i++) { ?>
+				  	<li><a href="<?php echo $this->hotBook['book'][$i]['bookUrl']; ?>" title="<?php echo $this->hotBook['user'][$i]['user_name']; ?>正在卖<?php echo $this->hotBook['book'][$i]['book_name']; ?>">
+				  	<?php echo $this->hotBook['user'][$i]['user_name']; ?>正在卖<?php echo $this->hotBook['book'][$i]['book_name']; ?></a></li>
+				  <?php } ?>
+				  <!-- 输出最近交易  end -->
+				  	<li><a href="/publish/publishbook" target="_blank" class='more'>更多</a></li>
+				  </ul>
+				  <ul class="tab-pane" id="newest-comment">
+				  <!-- 输出最近已完成交易信息  start -->
+				  <?php for ($j=0; $j < 8; $j++) { ?>
+				  	<li><a href="<?php echo $this->pastBook['book'][$j]['bookUrl']; ?>" title="<?php echo $this->pastBook['user'][$j]['user_name']; ?>卖出<?php echo $this->pastBook['book'][$j]['book_name']; ?>">
+				  	<?php echo $this->pastBook['user'][$j]['user_name']; ?>卖出<?php echo $this->pastBook['book'][$j]['book_name']; ?></a></li>
+				  <?php } ?>
+				  <!-- 输出最近已完成交易信息  end -->
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<div class="active-user-wrap main-right-width">
+			<div class="active-user-inner">
+				<h2 class="active-user-title main-bgCol-fontFam">今日活跃用户</h2>	
+				<ul>
+				<!-- 活跃用户输出  start -->
+				<?php for ($i = 0; $i < count($this->hotUser); $i++) { ?>
+				<?php if ($i == 5 || $i == 10) { ?>
+				    <li  style='margin-right:0px;'><a href="<?php echo $this->hotUser[$i]['userUrl']; ?>" ><img src="<?php echo $this->hotUser[$i]['face_path']; ?>"></a></li>
+				<?php } ?>
+					<li><a href="<?php echo $this->hotUser[$i]['userUrl']; ?>"><img title="<?php echo $this->hotUser[$i]['user_name']; ?>" src="<?php echo $this->hotUser[$i]['face_path']; ?>"></a></li>
+				<?php } ?>
+				<!-- 活跃用户输出  end -->
+					<div class="clear"></div>
+				</ul>
+			</div>		
+
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div id="recent-shouted-wrap">
+		<div class="shouted-list-title list-title">
+			<a class="main-bgCol-fontFam" href="/drift"><em>最</em>近漂流</a>
+			<img src="/images/Tuzki_l02.png">
+			<p><a href="/drift">更多</a></p>
+		</div>
+		<!-- 漂流组件输出 -->
+		<div class="drift-wrap">
+			<div class="drift-inner">
+			<ul class="drift-list" style="margin-left: 0px;">
+			    <!-- 输出最近漂流书籍 start  -->
+			    <?php for ($i=0; $i < count($this->driftingInfo); $i++) { ?>
+				<li>
+					<div class="book-list-item-box book-list-item-box-up">
+						<div class="drift-list-item">
+							<div class="book-list-img-box-wrap">
+								<div class="book-list-img-box">
+								<a title="点击查看详情" href="/drift" target="_blank"><img src="<?php echo $this->driftingInfo[$i]['book_cover']; ?>" style="display: inline; width: 124px; height: 93.10877192982456px;"></a>
+							</div>
+							</div>
+							<div class="book-list-info">
+								<p title="v2测试呢"><i>书名:</i><span><?php echo $this->driftingInfo[$i]['book_name']; ?></span></p>
+								<p><i>贡献者:</i><span><?php echo $this->driftingInfo[$i]['book_owner']; ?></span></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<?php } ?>
+				<!-- 输出最近漂流书籍 start  -->
+			</ul>
+			</div>
+			<div class="btn_func">
+				<a class="prev" href="javascript:">前一个</a>
+				<a class="next" href="javascript:">后一个</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>

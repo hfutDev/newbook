@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="/css/topublish.css">
+<link rel="stylesheet" type="text/css" href="/css/todonate.css">
+<script type="text/javascript" src="/js/toseek_publish.js"></script>
+<!-- <script type="text/javascript" src="/js/plugin-UpLoadFileCheck.js"></script> -->
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="donate-form-wrap">
+		<h2 class="title-h1">
+			<span class="title-h1-text">捐赠书籍板块后台登录</span>
+			<span class="required-item">*为必填项</span>
+			<div class="clear"></div>
+		</h2>
+		<form action="/donate/loginchk" method="post" enctype="multipart/form-data" name='donate-form' class="donate-form donate-log-form" style="margin-left:265px;">
+			<p class='book-name-p'>
+				<label for="user">*管理员：</label><input type="text" name='user' id='user' tabindex="23" style="width:155px"/><i></i>
+			</p>
+			<p class='book-name-p'>
+				<label for="password">*密码：</label><input type="password" name='password' id='password' tabindex="24" /><i></i>
+			</p>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code_2">*请确认</label>
+					<input type="text" tabindex="29" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+				</div>
+				<div class="clear"></div>
+				<div class="donate-log-btn-wrap">
+					<input type="submit" class="submit-btn donate-log-btn" name="donate-sumbit-btn" tabindex="34" style="margin-top:10px;margin-left:140px;" value="登录后台" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</div>
+<style type="text/css">
+	.donate-log-form i{
+		left: 280px;
+	}
+	.donate-log-form .val-code i{
+		left: 325px;
+	}
+	.donate-log-btn{
+		padding: 4px 6px;
+	}
+	#footer-wrap{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+</style>

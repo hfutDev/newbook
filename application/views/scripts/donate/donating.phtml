@@ -1,0 +1,180 @@
+<style type="text/css">
+.zc_table{
+	width:100%;
+	color: #666;
+}
+.zc_table th{
+	background: #F0F7FF;
+	border: 1px solid #c9dae3;
+	border-bottom: none;
+	padding-top:2px;
+	line-height:30px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.zc_table td{
+	background: #fff;
+	border:1px solid #c9dae3;
+	line-height:28px;
+	padding:0 8px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.tabs .text-section {
+	background:#f9f9f9;
+	padding:19px 0 8px 36px;
+	margin:0 0 1px;
+}
+.nav-tabs{
+	height: 24px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+	margin-left: 0;
+}
+.nav-tabs>li{
+	margin-bottom: -1px;
+	float: left;
+	line-height: 20px;
+}
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover{
+	color: #555;
+	cursor: default;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+.nav-tabs>li>a{
+	padding: 8px 12px;
+	margin-right: 2px;
+	line-height: 20px;
+	border-radius: 4px 4px 0 0 ;
+}
+.nav-tabs>li>a:hover{
+	border-color: #eee #eee #ddd;
+	text-decoration: none;
+	background: #eee;
+}
+#content h2{
+	color: #333;
+	text-align: center;
+	font-size: 16px;
+}
+/*翻页*/
+/*===翻页=====*/
+.turn-page-wrap{
+	margin-right: 20px;
+	margin-bottom: 16px;
+	margin-top: 20px;
+	float: right;
+}
+.turn_page_ul li{
+	display: inline;
+	line-height: 25px;
+	margin: 0 6px;
+}
+.turn_page_ul li a{
+	color: #690;
+	border: 1px solid #690;
+	padding: 0 10px;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 13px;
+}
+.turn_page_ul li a:hover{
+	text-decoration: none;
+	background: #690;
+	color: #fff;
+}
+.cur-page,.total-page{
+	font-size: 14px;
+	font-weight: bold;
+}
+.cur-page{
+	font-family: 'Georgia';
+	font-size: 18px;
+}
+
+/*#footer-wrap{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}*/
+</style>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<h2>捐赠信息管理</h2>
+	<div class="text-section">
+		<ul class="nav-tabs">
+			<li>
+				<a href="/donate/admin/type/1">未处理的捐赠请求</a>
+			</li>
+			<li>
+				<a href="/donate/admin/type/2">处理完成的捐赠请求</a>
+			</li>
+			<li class="<?php echo $this->inStyle; ?>">
+				<a href="/donate/admin/type/3">未获赠的爱心书籍</a>
+			</li>
+			<li class="<?php echo $this->outStyle; ?>">
+				<a href="/donate/admin/type/4">已获赠的爱心书籍</a>
+			</li>
+			<li>
+				<a href="/donate/todonate">增加捐赠信息</a>
+			</li>
+			<li>
+				<a href="/donate/logout">注销登录</a>
+			</li>
+		</ul>
+	</div>
+	<table border="0" cellspacing="0" cellpadding="0" class="zc_table">
+          <tr>
+            <th>捐赠编号</th>
+            <th>捐赠者</th>
+            <th>书名</th>
+            <?php if ($this->inStyle) { ?>
+            <th>学院</th>
+            <th>封面</th>
+            <?php }?>
+            <th>捐赠者寄语</th>
+            <th>青志联寄语</th>
+            <?php if ($this->inStyle) { ?>
+            <th>操作</th>
+            <?php }?>
+            <?php if ($this->outStyle) { ?>
+            <th>获赠者</th>
+            <th>地址</th>
+            <th>获赠感言</th>
+            <?php }?>
+          </tr>
+          <!-- 预约信息输出 start -->
+          <?php for ($i=0; $i < count($this->donateInfo); $i++) { ?>
+          <tr>
+            <td align="center"><?php echo $this->donateInfo[$i]['donate_id']; ?></td>
+            <td align="center"><?php echo $this->donateInfo[$i]['donator']; ?></td>
+            <td align="center"><?php echo $this->donateInfo[$i]['book_name']; ?></td>
+            <?php if ($this->inStyle) { ?>
+            <td align="center"><?php echo $this->donateInfo[$i]['college']; ?></td>
+            <td align="center"><img onload="$(this).resizeImage2(true, 24,30)" src="<?php echo $this->donateInfo[$i]['book_path']; ?>"></td>
+            <?php }?>
+            <td align="center"><?php echo $this->donateInfo[$i]['donator_wish']; ?></td>
+            <td align="center"><?php echo $this->donateInfo[$i]['volunteer_wish']; ?></td>
+            <?php if ($this->inStyle) { ?>
+            <td align="center"><a href="/donate/donee/id/<?php echo $this->donateInfo[$i]['donate_id']; ?>">完善信息</a></td>
+            <?php }?>
+            <?php if ($this->outStyle) { ?>
+            <td align="center"><?php echo $this->donateInfo[$i]['donee']; ?></td>
+            <td align="center"><?php echo $this->donateInfo[$i]['donee_address']; ?></td>
+            <td align="center"><?php echo $this->donateInfo[$i]['donee_wish']; ?></td>
+            <?php }?>
+          </tr>
+          <?php } ?>
+          <!-- 预约信息输出 end -->
+        </table>
+        <div class="turn-page-wrap">
+			<ul class="turn_page_ul">
+				<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+				<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+				<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+				<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+				<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+			</ul>
+		</div>
+</div>

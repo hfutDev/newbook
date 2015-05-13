@@ -1,0 +1,25 @@
+.donate-form-wrap{
+	margin-bottom: 40px;
+}
+.donate-form{
+	margin-left: 140px;
+	margin-top: 40px;
+	text-align: left;
+}
+.donate-form select,.donate-form input[type='text'],.textarea-wrap{
+	width: 460px;
+}
+.donate-sumbit-btn, .feedback-sumbit-btn,.todrifting-sumbit-btn{
+	padding: 4px 6px;
+}
+.donate-form i{
+	left: 590px;
+}
+.donate-form select{
+	margin-left: 10px;
+	padding: 0px;
+	height: 25px;
+}
+.val-code i{
+	left: 328px;
+}

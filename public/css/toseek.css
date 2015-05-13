@@ -1,0 +1,269 @@
+.title-h1{
+	width: 94%;
+	margin-left: 3%;
+	border-bottom: 5px solid #ec7150;
+	font-size: 16px;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	color: #787070;
+}
+.title-h1-text{
+	margin-left: 20px;
+	float: left;
+}
+.required-item{
+	float: right;
+	margin-right: 20px;
+}
+.toseek-title{
+	height: 28px;
+	text-align: left;
+	margin: 20px 0 20px -40px;
+}
+.seek-form-wrap{
+	margin-left: 180px;
+	text-align: left;
+}
+.seek-form-wrap input[type="text"],.seek-form-wrap .textarea-wrap{
+	width: 460px;
+}
+.seek-form-wrap i{
+	left: 590px;
+}
+.seek-form-wrap p .cus-label{
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+.cus-lable-p{
+	height: 30px;
+}
+.val-code{
+	position: relative;
+	width: 480px;
+	float: left;
+}
+
+.val-code label{
+	float: none;
+}
+.val-code i{
+	left: 320px;
+}
+.val-code #validation_code_2,.val-code img{
+	display: inline-block;
+	margin-left: 8px;
+	vertical-align: bottom;
+	float: none;
+}
+.val-code a{
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	text-decoration: underline;
+	font-size: 13px;
+	margin-left: 5px;
+}
+.seek-sumbit-btn{
+	*margin-right:200px;
+	padding: 4px 6px;
+}
+.seek-form-wrap .textarea-wrap{
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+	height: 84px;
+	margin-left: 10px;
+	*margin-left: 0;
+	text-indent: 0px;
+	font-size: 0px;
+	padding: 0px;
+}
+.textarea-wrap textarea{
+	overflow: hidden;
+	text-indent: 0.5em;
+	width: 100%;
+	border:none;
+	font-size: 14px;
+	letter-spacing: 2px;
+	font-family: "微软雅黑";
+	height: 64px;
+	*height: 60px;
+	margin: 0px;
+	padding: 0px;
+	resize:none;
+	outline: none;
+	padding-top: 4px;
+	word-wrap:break-word;
+	box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+	-webkit-box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+	-moz-box-shadow: inset 0 1px 1px rgba(236,113,80,0.75);
+}
+.wordCheck{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	border:none;
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	cursor: text;
+	text-align: right;
+	color: #ec7150;
+	font-size: 14px;
+}
+.wordChange{
+	font-size: 26px;
+	font-family: "Georgia";
+}
+.validation-code-p>span{
+	height: 30px;
+	width: 90px;
+	overflow: hidden;
+	border-radius: 3px;
+	position: absolute;
+	top: 0px;
+	left: 464px;
+	cursor: pointer;
+}
+#validation-code_2{
+	width: 330px;
+}
+
+/*标签*/
+.label-box-ul{
+	padding: 8px;
+}
+.label-box-ul>li{
+	position: relative;
+	float: left;
+	display: inline;
+	margin: 0 4px 8px;
+	padding: 1px;
+	line-height: 20px;
+	vertical-align: middle;
+	background: #fff;
+}
+.label-box-ul>li a{
+	display: inline-block;
+	min-width: 10px;
+	padding: 0 6px;
+	text-align: center;
+	white-space: nowrap;
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #c8c9cd;
+}
+.label-box-ul>li a:hover,.label-box-ul .selected a{
+	margin: -1px;
+	border:2px solid #ec7150;
+	text-decoration: none;
+}
+.label-box-ul>li a:focus{
+	outline: 0;
+}
+.label-box-ul>li strong{
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	text-indent: -99em;
+	background: url('../images/arrow.png') 0 -47px no-repeat; 
+}
+.lable-box dt{
+	float: left;
+}
+.lable-box dd{
+	margin-left: 110px;
+	width: 460px;
+}
+.book-des-p label{
+	*margin-right: 10px;
+}
+#validation-code-input{
+	width: 330px;
+}
+.submit-p{
+	margin-top: 10px;
+}
+.submit-p>.submit-btn{
+	*display: block;
+	*margin-left: -40px;
+	font-size: 16px;
+	padding: 4px 8px;
+}
+.cus-lable-p input{
+	color: #aaa;
+}
+.cus-lable-p input:focus,.book-des-p textarea:focus{
+	color: #000;
+}
+.publish-form{
+	margin-bottom: 20px;
+	text-align: left;
+}
+.spotlight-wrap{
+	position: relative;
+	padding: 20px 0;
+	*margin-left: 20px;
+}
+.arrow-left,.arrow-right{
+	position: absolute;
+	top: 70px;
+	left: 40px;
+	width: 24px;
+	height: 48px;
+	overflow: hidden;
+	cursor: pointer;
+	background: url(../images/arrow.png) no-repeat;
+	z-index: 100;
+}
+.arrow-left{
+	background-position: 0 0px;
+}
+.arrow-left:hover{
+	background-position: -51px 0;
+}
+.arrow-right:hover{
+	background-position: -24px 0 ;
+}
+.arrow-right{
+	background-position: -74px 0;
+}
+.arrow-right{
+	left: 920px;
+}
+.spotlight-list{
+	margin-left: 100px;
+	*margin-left: 0px;
+	position: relative;
+	height: 194px;
+	width: 780px; 
+	text-align: left;
+	overflow: hidden;
+}
+.spotlight-list ul{
+	text-align: center;
+	position: absolute;
+	width: 1600px;
+}
+.spotlight-list ul li{
+	float: left;
+	width: 160px;
+}
+.spotlight-list ul li>a{
+	height: 111px;
+	width: 145px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	overflow: hidden;
+}
+.spotlight-list ul li>p{
+	line-height: 49px;
+	height: 49px;
+}

@@ -1,0 +1,74 @@
+<style type="text/css">
+	article{
+		font-size: 10px;
+	}
+	.pagination{
+		float: right;
+	}
+</style>
+<script type="text/javascript" src="/js/utils.js"></script>
+<article>
+	<div class="text-section">
+		<h1>用户信息</h1>
+		<p>点击功能标签进行管理</p>
+	</div>
+	<div class="text-section">
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="/admin/user">易书友</a>
+			</li>
+			<li>
+				<a href="/admin/adminuser">管理员</a>
+			</li>
+		</ul>
+	</div>
+	<table class="table table-hover table-striped table-bordered table-condensed">
+		<thead>
+			<th>用户ID</th>
+			<th>用户名</th>
+			<th>电话号码</th>
+			<th>头像</th>
+			<th>注册时间</th>
+			<th>最后登录时间</th>
+			<th>账号状态</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<!-- 书籍信息输出 start -->
+			<?php for ($i=0; $i < count($this->user); $i++) { ?>
+			<tr>
+				<td><?php echo $this->user[$i]['user_id']; ?></td>
+				<td><?php echo $this->user[$i]['user_name']; ?></td>
+				<td><?php echo $this->user[$i]['tel']; ?></td>
+				<td><img onload="$(this).resizeImage2(true, 30,30)" src="<?php echo $this->user[$i]['face_path']; ?>"></td>
+				<td><?php echo $this->user[$i]['reg_time']; ?></td>
+				<td><?php echo $this->user[$i]['last_time']; ?></td>
+				<td><?php echo $this->user[$i]['state']; ?></td>
+				<td>
+					<?php if ($this->user[$i]['state'] == "1") { ?>
+					<a class="btn btn-small" href="javascript:void(0);" title="修改交易状态"><i class="icon-arrow-right user"></i>2</a>
+					<?php } ?>
+					<?php if ($this->user[$i]['state'] == "2") { ?>
+					<a class="btn btn-small" href="javascript:void(0);" title="修改交易状态">1<i class="icon-arrow-left user"></i></a>
+					<?php } ?>
+				</td>
+			</tr>
+			<?php } ?>
+			<!-- 书籍信息输出 end -->
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="span4"></div>
+	    <div class="span5">
+	    	<div class="pagination">
+				<ul>
+					<li><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>"><i class="icon-arrow-left"></i></a></li>
+					<li><a href="javascript:void(0)"><?php echo $this->page; ?>/<?php echo $this->pages; ?></a></li>
+					<li><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>"><i class="icon-arrow-right"></i></a></li>
+					<li><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</article>

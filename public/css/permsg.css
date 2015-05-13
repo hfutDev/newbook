@@ -1,0 +1,197 @@
+
+.message_list{
+	margin: 20px 10px 0 10px;
+	font-size: 14px;
+}
+.messages_item{
+	padding: 8px 14px 6px;
+	border-bottom: 1px dashed #c4beb7
+}
+.message_item_avatar{
+	width: 70px;
+	height: 70px;
+	float: left;
+	display: inline;
+	margin-left: 15px;
+}
+.message_item_img_wrapper{
+	margin: 5px;
+}
+.message_item_img_wrapper img{
+	height: 60px;
+	width: 60px;
+	display: block;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.message_item_content{
+	margin: 0 10px 0 90px;
+	padding-top: 5px;
+}
+.message_item_inner{
+	text-align: left;
+	padding: 0 10px;
+	position: relative;
+	height: auto;
+	color: #000;
+}
+.floor_count{
+	color:#dd8824;
+	font-size: 18px;
+	margin-left: -5px;
+	height: 18px;
+	line-height: 18px;
+}
+.message_content{
+	color: #0f0f0f;
+	text-indent: 2em;
+	word-wrap: break-word;
+	margin-bottom: 5px;
+}
+.message_item_time{
+	font-size: 10px;
+	color: #ccc;
+	margin-left:  2em;
+}
+.visitor_name, .reply_btn{
+	font-size: 13px;
+	float: right;
+	margin: 0;
+	margin-right: 5px;
+}
+.visitor_name{
+}
+.reply_btn{
+	color: #dd8824;
+}
+.visitor_name:hover, .reply_btn:hover{
+	text-decoration: none;
+}
+.message_item_comment_wrapper{
+	padding: 15px 20px 10px 20px;
+	margin: 10px;
+	border: 1px solid #e9dfd5;
+	border-radius: 3px;
+	zoom: 1;
+	background: #f9f5ea;
+	display: none;
+	position: relative;
+}
+.message_item_comment{
+	margin-top: 7px;
+	border-top: 1px solid #eee;
+}
+.reply_msg{
+	text-indent: 0;
+}
+.content_edt{
+	padding: 2px 4px 0;
+	font-size: 14px;
+	word-wrap: break-word;
+	line-height: 18px;
+	height: 20px;
+	color: #000;
+	background: #fff;
+	text-align: left;
+	width: 422px;
+	/**width:424px;*/
+	resize: none;
+	font-family: Tahoma, 宋体;
+	float: left;
+}
+.feed_arrow_em{
+	color: #e9dfd5;
+	position: absolute;
+	top: -10px;
+	right: 5px;
+}
+.feed_arrow_span{
+	color: #f7f7f7;
+	position: absolute;
+	top: -8px;
+	right: 5px;
+}
+.wordCheck{
+	margin: 0 0 5px;
+	background: #fff;
+	width: 430px;
+	*width:430px;
+	color: #000;
+	display: none;
+	border: 1px solid #c6c6c6;
+	border-top: none;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	text-align: right;
+	height: 25px;
+	line-height: 25px;
+	cursor: text;
+	float: left;
+}
+.sumbit_wrapper{
+	height: 20px;
+	position: relative;
+	display: none;
+}
+.smile_btn{
+	background: url(../images/face_iocn.png) no-repeat;
+	background-position: 0px 0px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+	margin-left: 7px;
+	margin-top: 3px;
+}
+.smile_btn:hover{
+	background-position: -25px 0px;
+}
+.sumbit_btn{
+	float: right;
+	font-size: 13px;
+	line-height: 20px;
+	background: #ffa00a;
+	width: 40px;
+	border-radius: 2px;
+	color: #fff;
+}
+.sumbit_btn:hover{
+	color: #fff;
+	text-decoration: none;
+	background: #ff8820;
+}
+#exp_tb{
+	position:absolute;
+	top:30px;
+	left:-120px;
+	z-index:602;
+	padding:8px; 
+	display:block;
+	background: #ccc;
+	border-radius: 5px;
+
+}
+#exp_tb td{
+	height: 25px;
+	width: 25px;
+	cursor: pointer;
+}
+#arrow{
+	position:absolute;
+	top:12px;
+	left:9px; 
+	z-index:601;
+	opacity:0.7;
+	width: 0px;
+	height: 0px;
+	border: 5px solid transparent;
+	border-bottom: 13px solid #ccc;
+}
+#exp_tb font{
+	font-size:11px; 
+	padding:3px 8px; 
+	padding-bottom:5px;
+	cursor: pointer;
+}

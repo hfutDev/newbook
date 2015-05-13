@@ -1,0 +1,68 @@
+<style type="text/css">
+	article{
+		font-size: 10px;
+	}
+	.pagination{
+		float: right;
+	}
+</style>
+<article>
+	<div class="text-section">
+		<h1>全部留言信息</h1>
+		<p>点击功能标签进行管理</p>
+	</div>
+	<div class="text-section">
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="/admin/messagereply/type/mes">全部留言</a>
+			</li>
+			<li>
+				<a href="/admin/usermessagereply/type/mes">用户留言</a>
+			</li>
+		</ul>
+	</div>
+	<table class="table table-hover table-striped table-bordered table-condensed">
+		<thead>
+			<th>留言ID</th>
+			<th>用户ID</th>
+			<th>用户名</th>
+			<th>访客ID</th>
+			<th>访客</th>
+			<th>留言内容</th>
+			<th>留言时间</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<!-- 书籍信息输出 start -->
+			<?php for ($i=0; $i < count($this->mes['mes']); $i++) { ?>
+			<tr>
+				<td><?php echo $this->mes['mes'][$i]['mes_id']; ?></td>
+				<td><?php echo $this->mes['peruser'][$i]['user_id']; ?></td>
+				<td><?php echo $this->mes['peruser'][$i]['user_name']; ?></td>
+				<td><?php echo $this->mes['muser'][$i]['user_id']; ?></td>
+				<td><?php echo $this->mes['muser'][$i]['user_name']; ?></td>
+				<td><?php echo $this->mes['mes'][$i]['mes_content']; ?></td>
+				<td><?php echo $this->mes['mes'][$i]['mes_time']; ?></td>
+				<td>
+					<a class="btn btn-small" href="javascript:void(0);" title="删除"><i class="icon-trash mes"></i>Del</a>
+				</td>
+			</tr>
+			<?php } ?>
+			<!-- 书籍信息输出 end -->
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="span4"></div>
+	    <div class="span5">
+	    	<div class="pagination">
+				<ul>
+					<li><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>"><i class="icon-arrow-left"></i></a></li>
+					<li><a href="javascript:void(0)"><?php echo $this->page; ?>/<?php echo $this->pages; ?></a></li>
+					<li><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>"><i class="icon-arrow-right"></i></a></li>
+					<li><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</article>

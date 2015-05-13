@@ -1,0 +1,121 @@
+<link rel="stylesheet" type="text/css" href="/css/publishBook.css">
+<!-- content -->
+<div id="content" class="site-wrap">
+<!-- banner -->
+	<a name="publishbook">
+		<div class="banner">
+			<img src="/images/publicBookBanner.png">
+		</div>
+	</a>
+	<div class="main-wrap">
+		<div class="sort-nav absol-0-0">
+			<h2>标签分类</h2>
+			<ul class="sort-by">
+				<li>学院
+					<ul class='main-col-list'>
+						<!-- 输出学院信息 start -->
+							<?php foreach ($this->col as $colValue) { ?>
+								<li><a href='<?php echo $colValue['collegeUrl']; ?>'><?php echo $colValue['college']; ?></a></li>
+							<?php } ?>
+					   <!-- 输出学院信息 end -->
+					</ul>
+				</li>
+				<li>标签
+					<ul class='main-lable-list'>
+					<!-- 输出标签列表  start-->
+					<?php foreach ($this->hotLabel as $hotLabelValue) { ?>
+						  <li><a href='<?php echo $hotLabelValue['labelUrl']; ?>' title='<?php echo $hotLabelValue['label_name']; ?>' target="_blank"><?php echo $hotLabelValue['label_name']; ?></a></li>
+					 <?php } ?>
+					 <!-- 输出标签列表  end-->
+					 <div class="clear"></div>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="showpublish">
+		    <div class="turn-page-wrap">
+				<ul class="turn_page_ul">
+					<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+					<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+					<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+					<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<!-- 瀑布liu -->
+			<div id="main-publish-list">
+			<!-- 输出书籍信息 start -->
+			<?php for ($i=0; $i < count($this->bookInfo['book']); $i++) { ?>
+				<div class="grid-wrap">
+					<div class="grid">
+					<div class="list-title-info">
+						<div class="avatar-wrap">
+							<a href="<?php echo $this->bookInfo['user'][$i]['userUrl']; ?>">
+								<img src="<?php echo $this->bookInfo['user'][$i]['face_path']; ?>" title="去逛逛呗">
+							</a> 
+						</div>
+						<div class="P-username"><p class='P-username-text'><a href="<?php echo $this->bookInfo['user'][$i]['userUrl']; ?>" target="_blank">
+							<?php echo $this->bookInfo['user'][$i]['user_name']; ?></a></p></div>
+						<div class="P-list-price">
+							<p class='going-price P-going-price'><span>￥</span><strong><?php echo $this->bookInfo['book'][$i]['now_price']; ?></strong></p>	
+							<p class=" P-original-price original-price"><span>￥</span><strong><?php echo $this->bookInfo['book'][$i]['former_price']; ?></strong></p>	
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="P-bookPic-wrap">
+						<a href="<?php echo $this->bookInfo['book'][$i]['bookUrl']; ?>">
+							<img src="<?php echo $this->bookInfo['book'][$i]['photo_path']; ?>" title="点击查看详情"></a>
+					</div>
+					<p class="P-bookName" title="<?php echo $this->bookInfo['book'][$i]['book_name']; ?>"><?php echo $this->bookInfo['book'][$i]['book_name']; ?></p>
+					<p class="P-bookMsg"><a href="<?php echo $this->bookInfo['book'][$i]['bookUrl']; ?>"><?php echo $this->bookInfo['book'][$i]['infor']; ?></a></p>
+					<div class="clear"></div>
+					</div>
+				</div>
+				<?php } ?>
+				<!-- 输出书籍信息  end -->
+			</div>
+			<div class="turn-page-wrap">
+				<ul class="turn_page_ul">
+					<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+					<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+					<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+					<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	window.onload=function(){
+		$('#main-publish-list').BlocksIt({
+			numOfCol: 3,
+			offsetX: 10,
+			offsetY: 10,
+			blockElement: '.grid-wrap'
+		});
+	}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("html,body").animate({scrollTop:200}, 1000); 
+		$(window).scroll(function(){
+			t = $(document).scrollTop();
+			var _this = $('.sort-nav');
+			if(t >=324){
+				// alert('k')
+				_this.css({position:"fixed",top:parseInt(0),left:$('.banner').offset().left,marginTop:0});
+			}else{
+				_this.css({position:"absolute",top:0,left:0,marginTop:''});
+			}
+		})
+		$(window).resize(function(){
+			if ($(document).scrollTop()>=324) {
+			$('.sort-nav').css({position:"fixed",top:parseInt(0),left:$('.banner').offset().left,marginTop:0});
+			};
+		})
+	})
+</script>

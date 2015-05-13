@@ -1,0 +1,224 @@
+<link rel="stylesheet" type="text/css" href="/css/publishBook.css">
+<link rel="stylesheet" type="text/css" href="/css/bookcrossing.css">
+<script type="text/javascript" src="/js/bookcrossing.js"></script>
+<!-- content -->
+<div id="content" class="site-wrap">
+<!-- banner -->
+	<a name="publishbook">
+		<div class="banner">
+			<img src="/images/drift-banner.jpg">
+		</div>
+	</a>
+	<div class="main-wrap">
+		<div id="bookcrossing">
+		    <div class="turn-page-wrap">
+		    	<div class="select_condi">
+		    		<b>筛选</b>
+		    		<ul>
+		    			<li class="<?php echo $this->allStyle; ?>">
+		    				<a href="/drift/index"><span>全部</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    			<li class="<?php echo $this->inStyle; ?>">
+		    				<a href="/drift/index/order/in"><span>可借</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    			<li class="<?php echo $this->outStyle; ?>">
+		    				<a href="/drift/index/order/out"><span>已借</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    		</ul>
+		    	</div>
+				<ul class="turn_page_ul">
+					<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+					<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+					<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+					<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<!-- 瀑布liu -->
+			<div id="main-publish-list" style="height: 875px;">
+			<!-- 输出书籍信息 start -->
+			    <?php for ($i=0; $i < count($this->driftInfo); $i++) { ?>
+			    <?php if ($this->driftInfo[$i]['drift_state'] == 1) { ?>	
+				<div class="grid-wrap"style="width: 232px; left: 504px; top: 10px; position: absolute;">
+					<div class="grid">
+					<div class="list-title-info">
+						<div class="donor_name">
+							<b>贡献者：</b>
+							<span><?php echo $this->driftInfo[$i]['book_owner']; ?></span>
+						</div>
+						<div class="book_state">
+							<span class="ok">可借</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="P-bookPic-wrap">
+						<a href="###">
+							<img src="<?php echo $this->driftInfo[$i]['book_cover']; ?>" title="点击查看详情"></a>
+					</div>
+					<p class="P-bookName" title="'C语言'"><?php echo $this->driftInfo[$i]['book_name']; ?></p>
+					<p class="P-bookMsg"><a href="/book/detail/book/253"><?php echo $this->driftInfo[$i]['book_content']; ?></a></p>
+					<div class="clear"></div>
+					<!-- <div class="state_ok_box">
+
+					</div> -->
+					<div class="crossing_history">
+						<div class="dynamic">
+							<ul class="dynamic_list">
+								<!-- 漂流轨迹输出 start -->
+								<?php if ($this->driftPathInfo[$i]) { ?>
+								<?php for ($j=0; $j < count($this->driftPathInfo[$i]); $j++) { ?>
+								<li>
+									<p>
+										<span class="time">
+											<?php echo $this->driftPathInfo[$i][$j]['time']; ?>
+										</span>漂到了 <span class="borrower"><?php echo $this->driftPathInfo[$i][$j]['user']; ?></span> 手中
+									</p>
+								</li>
+								<?php } ?>
+							    <?php } else { ?>
+								<li>
+									<p>
+										<span class="time">
+											暂无记录哦！
+										</span><span class="borrower">赶快去借阅吧~~~</span> 
+									</p>
+								</li>
+								<?php } ?>
+								<!-- 漂流轨迹输出 start -->
+							</ul>
+						</div>
+						<div class="bor-sumbit-btn-wrap">
+							<input type="submit" class="submit-btn bor-btn" name="bor-btn" tabindex="104" value="我要借阅"  data-bookid="<?php echo $this->driftInfo[$i]['drift_id']; ?>" >
+						</div>
+					</div>
+					</div>
+				</div>
+				<?php } elseif ($this->driftInfo[$i]['drift_state'] == 2) { ?>
+				<div class="grid-wrap" data-bookid="<?php echo $this->driftInfo[$i]['drift_id']; ?>" style="width: 232px; left: 504px; top: 10px; position: absolute;">
+					<div class="grid">
+					<div class="list-title-info">
+						<div class="donor_name">
+							<b>贡献者：</b>
+							<span><?php echo $this->driftInfo[$i]['book_owner']; ?></span>
+						</div>
+						<div class="book_state">
+							<span class="no">借出</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="P-bookPic-wrap">
+						<a href="###">
+							<img src="<?php echo $this->driftInfo[$i]['book_cover']; ?>" title="点击查看详情"></a>
+					</div>
+					<p class="P-bookName" title="'C语言'"><?php echo $this->driftInfo[$i]['book_name']; ?></p>
+					<p class="P-bookMsg"><a href=""><?php echo $this->driftInfo[$i]['book_content']; ?></a></p>
+					<div class="clear"></div>
+					<!-- <div class="state_ok_box">
+
+					</div> -->
+					<div class="crossing_history">
+						<div class="yuyue">
+							<?php if ($this->driftPathInfo[$i]) { ?>
+							<p>您来迟了，图书正在漂流中：</p>
+							<p class="detail"><span class="name"><?php echo $this->driftPathInfo[$i]['user']; ?></span>借阅时间：<span class="time"><?php echo $this->driftPathInfo[$i]['lastTime']; ?></span></p>
+							<p>下次启漂时间：</p>
+							<p class="star"><span class="time"><?php echo $this->driftPathInfo[$i]['nextTime']; ?></span></p>
+						    <?php } else { ?>
+						    <p>抱歉，借阅信息还没登记上...</p>
+						    <?php } ?>  
+							<p>点击预约，让您成为下一个阅读者！</p>
+							<input type="submit" class="submit-btn yuyue-btn" name="yuyue-btn" tabindex="104" value="我要预约"   data-bookid="<?php echo $this->driftInfo[$i]['drift_id']; ?>" >
+						</div>
+					</div>
+					</div>
+				</div>
+				<?php } ?>
+				<?php } ?>
+			<!-- 输出书籍信息  end -->
+			</div>
+			<div class="turn-page-wrap">
+				<div class="select_condi">
+		    		<b>筛选</b>
+		    		<ul>
+		    			<li class="<?php echo $this->allStyle; ?>">
+		    				<a href="/drift/index"><span>全部</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    			<li class="<?php echo $this->inStyle; ?>">
+		    				<a href="/drift/index/order/in"><span>可借</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    			<li class="<?php echo $this->outStyle; ?>">
+		    				<a href="/drift/index/order/out"><span>已借</span></a>
+		    				<strong>以选中</strong>
+		    			</li>
+		    		</ul>
+		    	</div>
+				<ul class="turn_page_ul">
+					<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+					<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+					<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+					<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+					<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+				</ul>
+			</div>
+			<!-- <div class="state_ok_box">
+
+			</div>
+			<div class="state_no_box">
+				
+			</div> -->
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="don_rule">
+		<p><b>读书漂流规则: </b><br/>1、本板块内的书籍均为同学自愿捐赠，供同学们借阅；<br/>2、如需借阅书籍请先预约，预约后到萄萄书吧与工作人员联系借阅书籍；<br/>3、因需保护书籍，借阅时需抵押一本书作为漂流书籍，供同学借阅，以便书籍共享；<br/>4、贡献你的好书或者你的闲置书籍吧，让更多人的人与你分享知识和读书乐趣。</p>
+	</div>
+</div>
+	<div class="bd">
+	</div>
+	<div class="bro-form-wrap">
+		<h2 class="title-h1">
+			<span class="title-h1-text">借阅书籍</span>
+			<b class="close" title="关闭">×</b>
+		</h2>
+		<form action="/drift/todriftchk" method="post" enctype="multipart/form-data" name="bro-form" class="bro-form">
+			<p class="bor-name-p">
+				<label for="bor_name">姓名</label><input type="text" name="bor_name" id="bor_name" tabindex="1" style="margin-left: 10px;"><i></i>
+			</p>
+			<p class="tel-p">
+				<label for="tel">手机号码</label><input name="tel" id="tel" type="text" tabindex="2"><i></i>
+			</p>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code">验证码</label>
+					<input type="text" tabindex="3" name="validation_code" id="validation_code" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+				</div>
+				<div class="bro-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn bro-sumbit-btn yuyue-sumbit-btn" name="bro-sumbit-btn" tabindex="3" value="确认提交">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+	window.onload=function(){
+		$('#main-publish-list').BlocksIt({
+			numOfCol: 4,
+			offsetX: 10,
+			offsetY: 10,
+			blockElement: '.grid-wrap'
+		});
+	}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("html,body").animate({scrollTop:200}, 1000); 
+	})
+</script>

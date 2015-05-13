@@ -1,0 +1,191 @@
+<style type="text/css">
+.zc_table{
+	width:100%;
+	color: #666;
+}
+.zc_table th{
+	background: #F0F7FF;
+	border: 1px solid #c9dae3;
+	border-bottom: none;
+	padding-top:2px;
+	line-height:30px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.zc_table td{
+	background: #fff;
+	border:1px solid #c9dae3;
+	line-height:28px;
+	padding:0 8px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.tabs .text-section {
+	background:#f9f9f9;
+	padding:19px 0 8px 36px;
+	margin:0 0 1px;
+}
+.nav-tabs{
+	height: 24px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+	margin-left: 0;
+}
+.nav-tabs>li{
+	margin-bottom: -1px;
+	float: left;
+	line-height: 20px;
+}
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover{
+	color: #555;
+	cursor: default;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+.nav-tabs>li>a{
+	padding: 8px 12px;
+	margin-right: 2px;
+	line-height: 20px;
+	border-radius: 4px 4px 0 0 ;
+}
+.nav-tabs>li>a:hover{
+	border-color: #eee #eee #ddd;
+	text-decoration: none;
+	background: #eee;
+}
+#content h2{
+	font-size: 18px;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	color: #787070;
+	text-align: center;
+}
+/*翻页*/
+/*===翻页=====*/
+.turn-page-wrap{
+	margin-right: 20px;
+	margin-bottom: 16px;
+	margin-top: 20px;
+	float: right;
+}
+.turn_page_ul li{
+	display: inline;
+	line-height: 25px;
+	margin: 0 6px;
+}
+.turn_page_ul li a{
+	color: #690;
+	border: 1px solid #690;
+	padding: 0 10px;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 13px;
+}
+.turn_page_ul li a:hover{
+	text-decoration: none;
+	background: #690;
+	color: #fff;
+}
+.cur-page,.total-page{
+	font-size: 14px;
+	font-weight: bold;
+}
+.cur-page{
+	font-family: 'Georgia';
+	font-size: 18px;
+}
+
+/*#footer-wrap{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}*/
+</style>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<h2>捐赠信息管理</h2>
+	<div class="text-section">
+		<ul class="nav-tabs">
+			<li class="<?php echo $this->inStyle; ?>">
+				<a href="/donate/admin/type/1">未处理的捐赠请求</a>
+			</li>
+			<li class="<?php echo $this->outStyle; ?>">
+				<a href="/donate/admin/type/2">处理完成的捐赠请求</a>
+			</li>
+			<li>
+				<a href="/donate/admin/type/3">未获赠的爱心书籍</a>
+			</li>
+			<li>
+				<a href="/donate/admin/type/4">已获赠的爱心书籍</a>
+			</li>
+			<li>
+				<a href="/donate/todonate">增加捐赠信息</a>
+			</li>
+			<li>
+				<a href="/donate/logout">注销登录</a>
+			</li>
+		</ul>
+	</div>
+	<table border="0" cellspacing="0" cellpadding="0" class="zc_table">
+          <tr>
+            <th>预约编号</th>
+            <th>捐赠者</th>
+            <th>学院</th>
+            <th>电话号码</th>
+            <th>书名</th>
+            <th>预约时间</th>
+            <?php if ($this->inStyle) { ?>
+            <th>操作</th>
+            <?php }?>
+          </tr>
+          <!-- 预约信息输出 start -->
+          <?php for ($i=0; $i < count($this->toDonateInfo); $i++) { ?>
+          <tr>
+            <td align="center" class="yuyue_id"><?php echo $this->toDonateInfo[$i]['todonate_id']; ?></td>
+            <td align="center"><?php echo $this->toDonateInfo[$i]['td_name']; ?></td>
+            <td align="center"><?php echo $this->toDonateInfo[$i]['college']; ?></td>
+            <td align="center"><?php echo $this->toDonateInfo[$i]['tel']; ?></td>
+            <td align="center"><?php echo $this->toDonateInfo[$i]['book']; ?></td>
+            <td align="center"><?php echo $this->toDonateInfo[$i]['time']; ?></td>
+            <?php if ($this->inStyle) { ?>
+            <td align="center"><a href="javascript:" class="dealed">已受理</a></td>
+            <?php }?>
+          </tr>
+          <?php } ?>
+          <!-- 预约信息输出 end -->
+        </table>
+        <div class="turn-page-wrap">
+			<ul class="turn_page_ul">
+				<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+				<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+				<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+				<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+				<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+			</ul>
+		</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		$(".dealed").each(function(){
+			var _this = $(this);
+			var dealedID = 0;
+			_this.click(function(){
+				dealedID = _this.closest("tr").find(".yuyue_id").html();
+				$.ajax({
+					type:"POST",
+					url:"/donate/updatetodonate",
+					data:{"delID":dealedID},
+					success:function(data){
+						// if (data=="suc") {
+							alert("处理成功！");
+							_this.closest("tr").remove();
+						// }else{
+							
+						// }
+					}
+				})
+			})
+		})
+	})
+</script>
+

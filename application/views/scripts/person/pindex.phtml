@@ -1,0 +1,43 @@
+
+	<h1><img src="/images/perindex-h101.png"><span>易书网朋友</span><img src="/images/perindex-h102.png"></h1>
+		<!-- 我的易书 -->
+	<div class="dealing">
+		<h2 class="all-title"><a href="/person/perguestbook/type/per">我的交易</a></h2>
+		<ul class='dealing-list'>
+		<!-- 输出个人最近交易  start -->
+		<?php foreach ($this->saleBook['book'] as $sValue) { ?>
+				<li>
+					<a href="<?php echo $sValue['bookUrl']; ?>"><img src="<?php echo $sValue['photo_path']; ?>" title='<?php echo $sValue['book_name']; ?>' onload="$(this).resizeImage2(true, 109,143)"></a>
+				</li>
+		<?php } ?>
+		<!-- 输出个人最近交易  end -->
+				<div class="clear"></div>
+			</ul>
+	</div>
+		<div class="clear"></div>
+			<!-- 留言板 -->
+	<div class="msg-board">
+		<h2 class='all-title'><a href="/person/mes/type/per">我的留言板</a></h2>
+		<ul class='msg-list'>
+		<!-- 输出个人最近留言  start -->
+		<?php for ($i=0; $i < count($this->mesInfo['user']); $i++) { ?>
+			<li ><a class='visitor-name' href="<?php echo $this->mesInfo['user'][$i]['userUrl']; ?>"><?php echo $this->mesInfo['user'][$i]['user_name']; ?></a>给您留言啦!<a href='javascript:void(0);' class='all-btn'>点击查看</a></li>
+		<?php } ?>
+		<!-- 输出个人最近留言  end -->
+		</ul>
+	</div>
+		<!-- 最近凡客 -->
+	<div class="new-visitor">
+		<h2 class='all-title'><a href="/person/visitor/type/per">最新访客</a></h2>
+		<ul class="visitor-list">
+		<!-- 输出个人最近访客  start -->
+		<?php foreach ($this->visInfo as $vValue) { ?>
+			<li><a href="<?php echo $vValue['userUrl']; ?>"><img src="<?php echo $vValue['face_path']; ?>"><p><?php echo $vValue['user_name']; ?></p></a></li>
+		<?php } ?>
+		<!-- 输出个人最近留言  end -->
+			<div class="clear"></div>
+		</ul>
+		<!-- <div class="morebtn-wrap"> -->
+			<a class='all-btn' href="/person/visitor/type/per" >查看更多</a>
+		<!-- </div> -->
+	</div>

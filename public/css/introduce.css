@@ -1,0 +1,48 @@
+.title-h1{
+	width: 94%;
+	margin-left: 3%;
+	border-bottom: 5px solid #ec7150;
+	font-size: 16px;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	color: #787070;
+}
+.title-h1-text{
+	margin-left: 20px;
+	float: left;
+}
+#list{
+	border: 1px solid #eee;
+	margin: 30px auto 0px;
+	color: #000;
+	width: 70%;
+}
+#list th,#list td{
+	border: 1px solid #C1DAD7;
+	margin: -1px;
+	letter-spacing:2px;
+	padding: 6px 6px 6px 12px;
+}
+#list td:hover,#list th:hover{
+	background: #fff;
+}
+#list th{
+	color: #4f6b72;
+	font-size: 14px;
+}
+#list td{
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+body,html{
+	height: 100%;
+}
+.wrap{
+	position: relative;
+	min-height: 100%;
+}
+#footer-wrap{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}

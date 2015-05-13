@@ -1,0 +1,17 @@
+
+<h1  class="main-title"><span><?php echo $this->title; ?></span><img src="/images/per-title-icon.png"></h1>
+<ul class='visitor_list'>
+<!-- 访客输出 start -->
+<?php foreach ($this->visitor as $visValue) { ?>
+	<li>
+		<div class='visitor_list_inner'>
+			<a href="<?php echo $visValue['userUrl']; ?>"><img src="<?php echo $visValue['face_path']; ?>"></a>
+			<p class='visitor_name'><?php echo $visValue['user_name']; ?></p>
+			<p class='return_visit_btn'><a href="<?php echo $visValue['user_name']; ?>">我要回访</a></p>
+		</div>
+		<div class="boder-right"></div>
+	</li>
+<?php } ?>
+<!-- 访客输出 end -->
+	<div class="clear"></div>
+</ul>

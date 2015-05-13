@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>易书网--工大人自己的图书站点</title>
+		<meta name="keywords" content="易书网,合肥工业大学,易书网-工大人自己的图书站点,大学生发展网络教育中心,合工大,合工大易书网">
+		<meta name="description" content="易书网致力于为合肥工业大学全体师生提供用于二手书籍交易的网络平台，旨在打造一个方便和快捷的工大人自己的图书站点">
+		<!-- <link rel="stylesheet" type="text/css" href="/css/topublish.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="/css/seekbook.css"> -->
+		<link rel="stylesheet" type="text/css" href="/css/utils.css">
+		<link rel="stylesheet" type="text/css" href="/css/reset.min.css">
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+		<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/js/utils.js"></script>
+		<script type="text/javascript" src="/js/ajax.js"></script>
+		<script type="text/javascript" src="/js/plugin-side.js"></script>
+		<script type="text/javascript" src="/js/index_solid.js"></script>
+		<script type="text/javascript" src="/js/blocksit.min.js"></script>
+	</head>
+	<body>
+		<div id="site-nav-wrap">
+			<div id="site-nav" class="site-wrap">
+				<a href="<?php echo $this->headerInfo['personUrl']; ?>" ><?php echo $this->headerInfo['user']; ?></a>
+				<a href="<?php echo $this->headerInfo['logoutUrl']; ?>" id='header-register'><?php echo $this->headerInfo['logoutName']; ?></a>
+				<a href="<?php echo $this->headerInfo['personUrl']; ?>" id='link-perCenter'>我的易书</a>
+				<a href="javascript:void(0)" id='help'>帮助</a>
+			</div>
+		</div>
+		<div id="header" class="site-wrap">
+			<h1 class='header-top'>
+				<a href="/" title='工大人自己的易书平台' target='_self'>
+					<img src="/images/logo.png" alt="易书网">
+				</a>
+			</h1>
+			<div id="search-form">
+				<form name='search' method='post' action='/search/keyword'>
+					<input type="text" class='search-input input-text main-transition' name='word'>
+					<input type="hidden" name="type" value="keyword">	
+					<input type='submit' class='search-submit input-submit fontFam-microYH' value="搜索" name='search-submit'>
+				</form>
+				<p class='hot-word'>
+					热门搜索：
+					<!-- 输出热门搜索词  start-->
+					<?php for ($i = 0; $i < 4; $i++) { ?>
+					<a href='<?php echo $this->hotLabel[$i]['labelUrl']; ?>'><?php echo $this->hotLabel[$i]['label_name']; ?></a>
+					<?php } ?>
+					<!-- 输出热门搜索词  end-->
+				</p>
+			</div>
+			<div class="clear"></div>
+			<div class="nav main-bgCol-fontFam">
+				<ol>
+					<li id="li" class='sort-li-wrap'>
+						<a href="javascript:void(0)"id='sort-btn'>分类<em class='arrow-em main-transition'>◆</em>
+						<span class='arrow-span'>◆</span></a>
+						<div class="sort-wrap absol-0-0">
+							<ul class='sort-inner'>
+								<li class='sortBy-college'>按学院&nbsp;&gt;
+									<div class="BBoard"></div>
+									<ul class='col-list absol-0-0'>
+										<?php foreach ($this->col as $colKey => $colValue) { ?>
+										<li><a href='<?php echo $colValue['collegeUrl']; ?>'><?php echo $colValue['college']; ?></a></li>
+										<?php } ?>
+									</ul>
+								</li>
+								<li class='sortBy-category'>按功能&nbsp;&gt;
+									<div class="BBoard"></div>
+									<ul class='category-list absol-0-0'>
+										<?php foreach ($this->category as $catKey => $catValue) { ?>
+										<li><a href='<?php echo $catValue['categoryUrl']; ?>'><?php echo $catValue['category']; ?></a></li>
+										<?php } ?>
+									</ul>
+								</li>
+								<li class='sortBy-lable '>按标签&nbsp;&gt;
+									<div class="BBoard"></div>
+									<ul class='lable-list absol-0-0'>
+										<?php foreach ($this->hotLabel as $hotLabelKey => $hotLabelValue) { ?>
+										<li><a href='<?php echo $hotLabelValue['labelUrl']; ?>'><?php echo $hotLabelValue['label_name']; ?></a></li>
+										<?php } ?>
+									</ul>	
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a class="<?php echo $this->indexClass; ?>" href="/index/index" class='main-transition'>首页</a>
+					</li>
+					<li>
+						<a class="<?php echo $this->donateClass; ?>" href="/donate" class='main-transition'>捐书板块</a>
+					</li>
+					<li>
+						<a class="<?php echo $this->driftClass; ?>" href="/drift" class='main-transition'>读书漂流</a>
+					</li>
+					<li>
+						<a class="<?php echo $this->publishClass; ?>" href="/book/publish" class='main-transition'>发布区</a>
+					</li>
+					<li>
+						<a class="<?php echo $this->seekClass; ?>" href="/book/seek" class='main-transition'>求书区</a>
+					</li>
+					<li class="one-key-go">
+						<a href="/book/topublish" class='main-transition' target="_blank">一键发布</a>
+					</li>
+					<li class="one-key-go">
+						<a href="/book/toseek" class='main-transition' target="_blank">一键求书</a>
+					</li>
+				</ol>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!-- content -->
+		<?php echo $this->layout()->content; ?>
+		<div class="clear"></div>
+		</div>
+		<!-- footer -->
+		<div id="footer-wrap" class="main-bgCol-fontFam">
+			<div id="footer-inner" class="site-wrap">
+				<ul>
+					<li><a href="/index/introduction" target="_blank">关于我们</a>|</li>
+					<li><a href="http://online.hfut.edu.cn/" target="_blank">友情链接</a>|</li>
+					<li><a href="/index/feedback" target="_blank">联系我们</a>|</li>
+					<li><a href="http://www.hfut.edu.cn/ch/" target="_blank">工大展览</a></li>
+					<div class="clear"></div>
+				</ul>
+				<p>CopyRight©2006-2013 合肥工业大学党委学工部（室）大学生发展网络教育中心 All rights reserved.</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+		$(function(){
+			// $(window).load(function(){ 
+				$('.publish-list-ul img').resizeImage(true, 144,140); 
+				$('.active-user-inner li img').resizeImage(true, 50,50); 
+				$('#carousel-pic img').resizeImage(true,684,303);
+			}); 
+		// })
+        </script>
+      <!--  统计代码 --> 
+       <script type="text/javascript" src="http://js.tongji.linezing.com/3292667/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3292667/tongji.gif"/></a></noscript> 
+	</body>
+</html>

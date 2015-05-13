@@ -1,0 +1,244 @@
+#content{
+	margin-bottom: 20px;
+}
+.left{
+	width: 782px;
+	overflow: hidden;
+	float: left;
+	margin-right: 20px;
+}
+.title-h1{
+	width: 94%;
+	margin-left: 3%;
+	border-bottom: 5px solid #ec7150;
+	font-size: 16px;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	color: #787070;
+}
+.title-h1-text{
+	margin-left: 20px;
+	float: left;
+}
+.book-info-inner h3,.book-info-dl dt,.book-info-dl dd{
+	font-family: '微软雅黑';
+	color: #1b1e1d;
+	font-weight: normal;
+	text-align: left;
+}
+.book-info-inner{
+	padding: 15px 48px 40px 0;
+}
+.book-info-inner h3{
+	font-size: 28px;
+}
+.book-cover-wrap{
+	float: left;
+	border: 2px solid;
+	border-color: #c5beb4;
+	padding: 18px 20px;
+	margin: 20px 15px 0 50px;
+}
+.book-cover-wrap:hover{
+	border-color: #c5beb4;
+	box-shadow: inset 0px 0px 5px 2px #ebe4db;
+}
+.book-cover{
+	width: 285px;
+	height: 386px;
+	overflow: hidden;
+	text-align: center;
+}
+.book-cover a{
+	cursor: default;
+	height: 386px;
+	width: 285px;
+}
+.book-cover a,.spotlight-list li>a,.history-list ul li>a{
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+.book-info-dl{
+	width: 340px;
+	float: left;
+	/*margin-top: 30px;*/
+	font-size: 14px;
+	/*height: 426px;*/
+	/*overflow: hidden;*/
+}
+.book-info-dl dl{
+	margin-top: 30px;
+}
+.book-info-dl dt,.book-info-dl dd{
+	line-height: 30px;
+}
+.book-info-dl dt{
+	font-weight: bold;
+	text-align: right;
+	width: 80px;
+	float: left;
+	display: inline-block;
+}
+.book-info-dl dd{
+	margin-left: 90px;
+}
+.book-info-dl .going-price{
+
+}
+.book-info-dl .original-price-dd,.book-info-dl .going-price-dd{
+	/*width: 60px;*/
+	float: left;
+	margin-left: 10px;
+}
+.book-info-dl .going-price-dt{
+	width: 50px;
+}
+.book-info-dl .original-price-dd{
+	text-decoration: line-through;
+}
+.book-info-dl .going-price-dd{
+	font-size: 28px;
+	color: #b61332;
+	text-decoration: none;
+	width: 120px;
+}
+.book-info-dl .original-price-dd:before,.book-info-dl .going-price-dd:before{
+	content: "￥";
+	/*text-decoration: line-through;*/
+}
+.spotlight-wrap{
+	position: relative;
+	padding: 20px 0;
+}
+.arrow-left,.arrow-right,.arrow-top,.arrow-bottom{
+	position: absolute;
+	top: 70px;
+	left: 40px;
+	width: 24px;
+	height: 48px;
+	overflow: hidden;
+	cursor: pointer;
+	background: url(../images/arrow.png) no-repeat;
+	z-index: 100;
+}
+/*.arrow-top,.arrow-bottom{
+	width: 48px;
+	height: 24px;
+	left: 65px;
+	top: 5px;
+}*/
+.arrow-left{
+	background-position: 0 0px;
+}
+.arrow-left:hover{
+	background-position: -51px 0;
+}
+.arrow-right:hover{
+	background-position: -24px 0 ;
+}
+.arrow-right{
+	background-position: -74px 0;
+}
+.arrow-right{
+	left: 740px;
+}
+.spotlight-list{
+	margin-left: 110px;
+	position: relative;
+	height: 194px;
+	width: 620px; 
+	overflow: hidden;
+}
+.spotlight-list ul{
+	position: absolute;
+	width: 1600px;
+}
+.spotlight-list ul li{
+	float: left;
+	width: 160px;
+}
+.spotlight-list ul li>a{
+	width: 111px;
+	height: 145px;
+	overflow: hidden;
+}
+.spotlight-list ul li>p{
+	margin-left: -49px;
+	line-height: 49px;
+	height: 49px;
+}
+/*right*/
+.right{
+	float: left;
+	width: 188px;
+	overflow: hidden;
+}
+.right h3{
+	font-size: 19px;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;	
+}
+.history-wrap{
+	position: relative;
+	border: 2px solid #ed7858;
+	/*padding: 25px 15px 40px;*/
+	padding: 5px 15px;
+}
+.history-list{
+	position: relative;
+	height: 833px;
+	overflow: hidden;
+}
+.history-list-ul{
+	overflow: hidden;
+	width: 154px;
+	height: 1600px;
+}
+.history-list-ul li{
+	padding: 0 31px;
+	height: 151px;
+	border-bottom: 1px solid #ed7858;
+	margin-bottom: 20px;
+}
+.history-list-ul li>a{
+	height: 120px;
+	width: 92px;
+	overflow: hidden;
+	margin: 15px auto 0;
+}
+.history-list-ul li>p{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	color: #333;
+	line-height: 25px;
+}/*
+.arrow-top{
+	background-position: 0 -60px;
+}
+.arrow-top:hover{
+	background-position: -52px -58px;
+}
+.arrow-bottom:hover{
+	background-position: 0px -86px; ;
+}
+.arrow-bottom{
+	background-position: -52px -82px;
+}
+.arrow-bottom{
+	top: 867px;
+}*/
+
+.get-tel{
+	display: inline-block;
+	color: #070707;
+	font-size: 14px;
+	cursor: pointer;
+	vertical-align: top;
+	margin-left: 8px;
+}
+.get-tel:hover{
+	text-decoration: underline;
+}

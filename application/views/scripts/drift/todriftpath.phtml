@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="/css/topublish.css">
+<link rel="stylesheet" type="text/css" href="/css/todonate.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.3.custom.min.css">
+<script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- <script type="text/javascript" src="/js/toseek_publish.js"></script>
+<script type="text/javascript" src="/js/plugin-UpLoadFileCheck.js"></script> -->
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="donate-form-wrap">
+		<h2 class="title-h1">
+			<span class="title-h1-text">增加读书漂流轨迹</span>
+			<span class="required-item">*为必填项</span>
+			<div class="clear"></div>
+		</h2>
+		<form action="/drift/todriftpathchk" method="post" enctype="multipart/form-data" name='donate-form' class="donate-form">
+			<p>
+				<label for="drift-id">*漂流书籍：</label>
+				<select name="drift-id" class="for-xueyuan">
+				<!-- 学院输出 start -->
+				<?php for ($i=0; $i < count($this->driftInfo); $i++) { ?>
+					<option value="<?php echo $this->driftInfo[$i]['drift_id']; ?>"><?php echo $this->driftInfo[$i]['book_name']; ?></option>
+				<?php } ?>
+				<!-- 学院输出 end -->
+				</select>
+				<i></i>
+			</p>
+			<p class='book-name-p'>
+				<label for="user">*借阅者：</label><input type="text" name='user' id='donatename' tabindex="23" /><i></i>
+			</p>
+			<p class="expiration-date-p">
+				<label for="expiration-date">*归还日期</label><input name="expiration-date" id="expiration-date" type="text" tabindex="31" onkeydown="return false" onkeyup="return false"  /><i></i>
+			</p>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code_2">*请确认</label>
+					<!-- <input type="text" tabindex="29" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i> -->
+				</div>
+				<div class="donate-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn donate-sumbit-btn" name="donate-sumbit-btn" tabindex="34" value="确认增加" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</div>
+

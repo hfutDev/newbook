@@ -1,0 +1,206 @@
+<script type="text/javascript" src="/js/donate.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/donate.css">
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="donate_head">
+		<a class="to_donate" href="javascript:" >我要捐赠</a>
+		<a class="go_donate_index" href="/donate/index" target="_self">捐赠首页</a>
+		<!-- <a class="go_index" href="/" target="_self">易书首页</a> -->
+	</div>
+	<div class="don_wrap">
+		<div class="don_list inner_01">
+			<ul>
+				<!-- 捐赠信息输出 start -->
+				<?php for ($i=0; $i < count($this->donateInfo); $i++) { ?>
+				<li class="list_li">
+					<img class="icon_list01" src="/images/donate_list.png">
+					<img class="icon_list02" src="/images/donate_list2.png">
+					<div class="left">
+						<div class="point_warp ava_warp">
+							<img class="round_01" src="/images/donate_ava.png">
+							<img class="line_01" src="/images/donate_lin3.png">
+							<img class="line_02" src="/images/donate_lin3.png">
+						</div>
+						<div class="donor_info donate_bor">
+							<div class="tit donate_bor_top">捐赠者信息</div>
+							<div class="detail donate_bor_bot">
+								<p class="donor_name">
+									<b>姓名：</b>
+									<span><?php echo $this->donateInfo[$i]['donator']; ?></span>
+								</p>
+								<p class="book_name">
+									<b>书名：</b>
+									<span><?php echo $this->donateInfo[$i]['book_name']; ?></span>
+								</p>
+								<p class="col_name">
+									<b>学院：</b>
+									<span><?php echo $this->donateInfo[$i]['col']; ?></span>
+								</p>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					<div class="mid donor_info">
+						<div class="mid_up mid_cont">
+							<div class="book_cover inner_left">
+								<div class="donate_bor_left tit">
+									书籍封面
+								</div>
+								<div class="cover_wrap left_wrap">
+									<div class="inner book_cover">
+										<img onload="$(this).resizeImage2(true, 112,120)" src="<?php echo $this->donateInfo[$i]['book_path']; ?>">
+									</div>
+								</div>
+							</div>
+							<div class="don_msg inner_right">
+								<div class="don_msg_wrap right_wrap">
+									<div class="inner com_msg">
+										<p>
+											<?php echo $this->donateInfo[$i]['donator_wish']; ?>
+										</p>
+									</div>
+								</div>
+								<div class="donate_bor_rig tit">
+									捐赠寄语
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="mid_down mid_cont">
+							<div class="qinZhiLian_msg inner_left">
+								<div class="donate_bor_left tit">
+									青志联寄语
+								</div>
+								<div class=" left_wrap">
+									<div class="inner com_msg">
+										<p>
+										<?php echo $this->donateInfo[$i]['volunteer_wish']; ?></p>
+									</div>
+								</div>
+							</div>
+							<div class="given_msg inner_right">
+								<div class=" right_wrap">
+									<div class="com_msg inner"><p>
+										<?php echo $this->donateInfo[$i]['donee_wish']; ?></p>
+									</div>
+								</div>
+								<div class="donate_bor_rig tit">
+									获赠寄语
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="right">
+						<div class="point_warp gain_wrap">
+							<img class="round_01" src="/images/donate_shouqu.png">
+							<img class="line_01" src="/images/donate_lin3.png">
+							<img class="line_02" src="/images/donate_lin3.png">
+						</div>
+						<div class="rece_info donate_bor">
+							<div class="tit donate_bor_top">受赠者信息</div>
+							<div class="detail donate_bor_bot">
+								<p class="rece_name">
+									<b>姓名：</b>
+									<span><?php echo $this->donateInfo[$i]['donee']; ?></span>
+								</p>
+								<p class="sex">
+									<b>性别：</b>
+									<span><?php echo $this->donateInfo[$i]['donee_sex']; ?></span>
+								</p>
+								<p class="birth">
+									<b>生日：</b>
+									<span><?php echo $this->donateInfo[$i]['donee_birth']; ?></span>
+								</p>
+								<p class="address">
+									<b>地址：</b>
+									<span><?php echo $this->donateInfo[$i]['donee_address']; ?></span>
+								</p>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<?php } ?>
+			</ul>
+				<!-- 捐赠信息输出 end -->
+			<div class="btn_func">
+				<a class="prev" href="javascript:">前一个</a>
+				<a class="next" href="javascript:">后一个</a>
+			</div>
+		</div>
+		<div class="change_ppt">
+			<ul>
+				<li class="current">
+					1
+				</li>
+				<li>
+					2
+				</li>
+				<li>
+					3
+				</li>
+				<li>
+					4
+				</li>
+				<li>
+					5
+				</li>
+				<li>
+					6
+				</li>
+			</ul>
+		</div>
+		<div class="don_rule">
+			<p><b>捐赠规则: </b><br/>1、捐赠请点击“我要捐赠按钮”，填写捐赠信息，请务必确认信息无误；<br/>2、收到您的捐赠信息后，青志联会联系您，暂时保存您的书籍，通过志愿者活动捐赠书籍给需要的同学；<br/>3、捐赠完全依据个人意愿，书籍一经捐赠，不得回收。<br/>4、希望你能献出你的爱心，用书籍为你传递更多的爱！</p>
+		</div>
+	</div>
+	<div class="bd">
+	</div>
+	<div class="select-wrap">
+		<h2 class="title-h1">
+			<!-- 标题有js控制变化 -->
+			<span data-sort="1" class="title-h1-text">本组捐赠信息已浏览完毕</span>
+			<b class="close" title="关闭">×</b>
+		</h2>
+		<div class="select_btn">
+			<a href="donate/index/page/1" class="change_group" data-group="<?php echo $this->page; ?>">跳转到下一组</a>
+			<a href="javascript:" class="look_again">重新浏览</a>
+		</div>
+		<!-- 我要捐赠 -->
+		<form action="/donate/idonatechk" method="post" enctype="multipart/form-data" name="todonate-form" class="todonate-form">
+			<p class="todonate-name-p">
+				<label for="todonate_name">姓名</label><input type="text" name="todonate_name" id="todonate_name" tabindex="1" style="margin-left: 10px;"><i></i>
+			</p>
+			<p class='book-name-p'>
+				<label for="bookname">捐赠书名</label><input type="text" name='bookname' id='bookname' tabindex="2" /><i></i>
+			</p>
+			<p>
+				<label for="college">学院</label>
+				<select name="college" class="for-xueyuan">
+				<!-- 学院输出 start -->
+				<?php foreach ($this->col as $colValue) { ?>
+					<option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
+				<?php } ?>
+				<!-- 学院输出 end -->
+				</select>
+				<i></i>
+			</p>
+			<p class="tel-p">
+				<label for="tel">手机号码</label><input name="tel" id="tel" type="text" tabindex="3" style="margin-left: 10px;"><i></i>
+			</p>
+			<div class="submit-p">
+				<div class="val-code">
+					<label for="validation_code">验证码</label>
+					<input type="text" tabindex="4" name="validation_code" id="validation_code" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+				</div>
+				<div class="todonate-sumbit-btn-wrap">
+					<input type="submit" class="submit-btn todonate-sumbit-btn" name="todonate-sumbit-btn" tabindex="5" value="确认借阅" data-bookid="12">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+		<div class="clear"></div>
+	</div>
+

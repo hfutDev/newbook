@@ -1,0 +1,40 @@
+
+	<!-- 他的发布 -->
+	<h2  class="GM-h2"><img src="/images/guestmode-h202.png"></h2>
+	<div class='table_border GM-table-boeder'></div>
+	<table class="table_list GM-table">
+		<thead>
+			<tr>
+				<th>书籍封面</th>
+				<th>书名</th>
+				<th>出版社</th>
+				<th>上架时间</th>
+				<th>过期时间</th>
+				<th>交易状态</th>
+			</tr>
+		</thead>
+		<tbody class='table_list_tbody'  style='display:table-row-group'>
+		<!-- 发布卖书信息 start-->
+		<?php for ($i=0; $i < count($this->saleBook['book']); $i++) { ?>
+			<tr>
+				<td style="padding-left:30px;"><a href="<?php echo $this->saleBook['book'][$i]['bookUrl']; ?>"  class='book_border' title="点击查看"><img src="<?php echo $this->saleBook['book'][$i]['photo_path']; ?>" onload="$(this).resizeImage2(true, 37,47)"></a></td>
+				<td class="bookname-td"><?php echo $this->saleBook['book'][$i]['book_name']; ?></td>
+				<td class="press-td"><?php echo $this->saleBook['book'][$i]['publish']; ?></td>
+				<td><?php echo $this->saleBook['sale'][$i]['start_time']; ?></td>
+				<td><?php echo $this->saleBook['sale'][$i]['end_time']; ?></td>
+				<td class='dealing_state_going'>交易中</td>
+			</tr>
+		<?php } ?>
+		<!-- 发布卖书信息 end-->
+		</tbody>
+	</table>
+	<div class="clear"></div>
+	<div class="turn-page-wrap">
+		<ul class="turn_page_ul">
+			<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+			<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+			<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+			<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+			<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+		</ul>
+	</div>

@@ -1,0 +1,12 @@
+                            <!-- 最近发布书籍输出 start -->
+<ul class="spotlight-list-ul" >
+<?php foreach ($this->relabook as $bValue) {?>
+	<li>
+		<a href="<?php echo $bValue['bookUrl']; ?>" target="_blank" title='点击查看详细信息'>
+			<img src="<?php echo $bValue['photo_path']; ?>" onload="$(this).resizeImage(true, 111,145);">
+		</a>	
+		<p><a href="<?php echo $bValue['bookUrl']; ?>" title='点击查看详细信息'><?php echo $bValue['book_name']; ?></a></p>
+	</li>
+<?php } ?>
+<!-- 最近发布书籍输出 end -->
+</ul>

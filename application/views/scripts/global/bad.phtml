@@ -1,0 +1,43 @@
+
+		<style type="text/css">
+			/*将footer钉在底部*/
+			body,html{
+				height: 100%;
+			}
+			.wrap{
+				position: relative;
+				min-height: 100%;
+			}
+			#footer-wrap{
+				left:0px;
+				position: absolute;
+				bottom: 0px;
+				width: 100%;
+			}
+			#content{
+				margin-top: 50px;
+			}
+			#content p{
+				font-family: '微软雅黑';
+				font-size: 24px;
+				color: #1d1b1a;
+			}
+			#content p a{
+				color: #ec7150;
+			}
+			#content .tiaozhuan{
+				font-size: 14px;
+				font-weight: normal;
+				margin-top: 20px;
+			}
+		</style>
+		<!-- content -->
+		<div id="content" class="site-wrap">
+			<?php echo $this->alertValue; ?>
+		</div>
+       <script>
+       // window.onload=function(){
+    	  //  alert("<?php echo $this->alertValue; ?>");
+       //     history.back();
+       //     }
+        </script>

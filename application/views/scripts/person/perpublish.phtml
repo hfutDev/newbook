@@ -1,0 +1,73 @@
+
+					<h1  class="main-title"><span><?php echo $this->title; ?></span><img src="/images/per-title-icon.png"></h1>
+					<div class='table_border'></div>
+					<table class="table_list">
+					<thead>
+						<tr>
+							<th>书籍封面</th>
+							<th>书名</th>
+							<th>出版社</th>
+							<th>求书时间</th>
+							<th>过期时间</th>
+							<th>交易状态</th>
+							<?php if ($this->title == "正在发布") { ?>
+							<th>操作</th>
+							<?php } ?>
+						</tr>
+					</thead>
+					<tbody class='table_list_tbody'  style='display:table-row-group'>
+					<!-- 发布书籍信息输出 start -->
+					<?php for ($i=0; $i < count($this->saleBook['book']); $i++) { ?>
+						<tr class="publish">
+							<td style="padding-left:30px;"><a href="<?php echo $this->saleBook['book'][$i]['bookUrl']; ?>"  class='book_border' title="点击查看"><img src="<?php echo $this->saleBook['book'][$i]['photo_path']; ?>" onload="$(this).resizeImage2(true, 37,47)"></a></td>
+							<td class="bookname-td"><?php echo $this->saleBook['book'][$i]['book_name']; ?></td>
+							<td class="press-td"><?php echo $this->saleBook['book'][$i]['book_name']; ?></td>
+							<td><?php echo $this->saleBook['sale'][$i]['start_time']; ?></td>
+							<td><?php echo $this->saleBook['sale'][$i]['end_time']; ?></td>
+							<?php if ($this->title == "正在发布") { ?>
+							<td class='dealing_state_going'>卖书中</td>
+							<td><a href="javascript:void(0)" id="<?php echo $this->saleBook['book'][$i]['book_id']; ?>" class='contorl_btn cancle_btn'>取消卖书</a></td>
+							<?php } elseif ($this->title == "已完成发布") { ?>
+							<td class='dealing_state_going'>卖书完成</td>
+							<?php } ?>
+						</tr>
+					<?php } ?>
+					<!-- 发布书籍信息输出 end -->
+					</tbody>
+				    </table>
+				    <div class="clear"></div>
+					<div class="turn-page-wrap">
+						<ul class="turn_page_ul">
+							<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+							<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+							<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+							<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+							<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+						</ul>
+					</div>
+				<script type="text/javascript">
+					$('.cancle_btn').live('click',function(){
+						var text = $(this).text();
+						var r=confirm('你确认'+text+'？');
+						if(true==r){
+							var _this= $(this);
+							$.ajax({
+								type:'POST',
+								url:'bookInfoAction.php',
+								data:{'book_id':$(this).attr('id')},
+								success:function(data){
+									if(data==1){//交易结束
+										_this[0].style.cursor='default';
+										_this.html("交易已取消").removeClass('cancle_btn');
+										_this.closest('tr').find(".dealing_state_going").html("已取消").addClass('dealing_state_ok').removeClass('dealing_state_going');
+										alert("取消成功");
+									}else{
+										// alert("操作失败");
+									}
+								}
+							})// end of ajax
+						}else{
+				
+						}
+					}) 
+				</script>

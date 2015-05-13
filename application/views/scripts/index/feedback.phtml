@@ -1,0 +1,89 @@
+
+<link rel="stylesheet" type="text/css" href="/css/feedback.css">
+<!-- content -->
+<div id="content" class="site-wrap">
+	<div class="left">
+		<h2 class="title-h1">
+			<span class="title-h1-text">意见反馈</span>
+			<div class="clear"></div>
+		</h2>
+		<div class="msg-board">
+			<h3>请您对我们的易书网提出宝贵意见和建议，您留下的每个意见都是我们产品改进的动力！</h3>
+			<form method="post" name="feedback-msg">
+				<div class="textarea-wrap" >
+					<textarea id="feedback-text" name="msg-cont"></textarea>
+					<span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span>
+				</div>
+				<div class="submit-p">
+					<div class="val-code">
+						<label for="validation_cod_4">*验证码</label>
+						<input type="text" tabindex="103" name="validation_code" id="validation_code_4" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+						<a href="javascript:void(0)" onclick="creatCode()">换一张</a>
+						<i style="left:340px;"></i>
+					</div>
+					<div class="feedback-sumbit-btn">
+						<input type="button" class="submit-btn feed-sumbit-btn" name="seek-sumbit-btn" tabindex="104" value="确认发布">
+						<input type="text" style="display:none;" tabindex="104" value="确认发布">
+					</div>
+					<div class="clear"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="right">
+		<h2 class="main-bgCol-fontFam">联系我们</h2>
+		<div class="contact-wrap">
+			<dl>
+				<dd>南区办公室:</dd>
+				<dt>德园食堂三楼大学生发展网络教育中心</dt>
+				<dd>南区邮箱:</dd>
+				<dt>hfutonline@163.com</dt>
+				<dd>新区办公室:</dd>
+				<dt>校医院407大学生发展网络教育中心</dt>
+				<dd>新区邮箱:</dd>
+				<dt>gongdaxuezi2012@163.com</dt>
+			</dl>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+$('#feedback-text').bind('keydown',{MAXLENGTH:100},checkWord);
+$('#feedback-text').bind('keyup',{MAXLENGTH:100},checkWord);
+	$('#validation_code_4').live('focus',{target:".val-code"},valCodeCheck);
+	$('.feed-sumbit-btn').live('click',submit);
+	$('.wordCheck').live('click',function(){
+		$('#feedback-text').focus();
+	})
+function submit(){
+	var val = $.trim($("#feedback-text").val());
+	if (''==val) {
+		alert('至少说点神马吧');
+		$(this).focus();
+		return false;
+	}else if($('#validation_code_4').data('yeah')!=1){
+		$('#validation_code_4').error_aimat(10);
+	}else if($('#validation_code_4').data('yeah')==1){
+		$.ajax({
+			type:"POST",
+			url:'/index/feedbackcheck',
+			data:{
+				value: val
+			},
+			success:function(data){
+				alert(data);
+				if(data=="1"){
+					alert('感谢您的宝贵意见');
+					$('#feedback-text').val('');
+					$('#validation_code_4').val('');
+					$('#validation_code_4').closest('.val-code').find('i').html('');
+				} else {
+					alert('反馈留言失败！');
+				}
+			}
+		})
+	}else{
+		$('#validation_code_4').blur();
+	}
+}
+</script>

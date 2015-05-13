@@ -1,0 +1,56 @@
+<link rel="stylesheet" type="text/css" href="/css/seekbook.css">
+<!-- content -->
+<div id="content" class="site-wrap">
+	<!-- banner -->
+	<a name="seekbook">
+		<div class="banner">
+			<img src="/images/seek-bannerpic.png">
+		</div>
+	</a>
+	<div class="clear"></div>
+	<ul class="main-wrap">
+		<!-- 遍历li的ID 从 seek-li-01到 seek-li-9 -->
+		<!-- 输出所有求书内容   start-->
+		<?php for ($i=0; $i < count($this->buyInfo['buy']); $i++) { ?>
+		<li id="<?php echo "seek-li-0"; echo $i+1; ?>">
+			<h3 class="seek-box-title">
+				<span class='ava-wrap'><a href="<?php echo $this->buyInfo['user'][$i]['userUrl']; ?>" target="_blank"><img src="<?php echo $this->buyInfo['user'][$i]['face_path']; ?>"></a></span>
+				<span class="seek-uername"><a href="<?php echo $this->buyInfo['user'][$i]['userUrl']; ?>" target="_blank"><?php echo $this->buyInfo['user'][$i]['user_name']; ?></a></span>
+				<span class="seek-time"><?php echo substr($this->buyInfo['buy'][$i]['time'], 0, 10); ?></span>
+			</h3>
+			<div class="seek-info-wrap" style="padding-bottom:7px;">
+				<div class="seek-centent">
+					<p class="topic-text">
+						<span>"</span>
+						<a href="/search/dosearch/type/keyword/word/<?php echo $this->buyInfo['buy'][$i]['buy_bookname']; ?>" target="_blank" class="seek-topic">#<?php echo $this->buyInfo['buy'][$i]['buy_bookname']; ?>#</a>
+						<?php echo $this->buyInfo['buy'][$i]['buy_content']; ?>
+						<span>"</span>
+					</p>
+					<?php if ($this->loginJudge) { ?>
+					<p class="tel-wrap">
+						<span class="seek-tel" title="联系方式"><?php echo $this->buyInfo['user'][$i]['tel']; ?></span>
+					</p>
+					<?php } else { ?>
+					<p class="tel-wrap">
+						<span class="seek-tel" ><img src="/images/phone-icon.png"></span>
+						<a href="<?php echo $this->loginUrl; ?>" class="get-tel">登录查看</a>
+					</p>
+					<?php } ?>
+				</div>
+			</div>
+		</li>
+		<?php } ?>
+		<!-- 输出所有求书内容     end-->
+		<div class="clear"></div>
+	</ul>
+	<div class="turn-page-wrap">
+		<ul class="turn_page_ul">
+			<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+			<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+			<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+			<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+			<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>

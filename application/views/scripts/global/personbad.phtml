@@ -1,0 +1,62 @@
+
+<style type="text/css">
+	/*将footer钉在底部*/
+	body,html{
+		height: 100%;
+	}
+	.wrap{
+		position: relative;
+		min-height: 100%;
+	}
+	#footer-wrap{
+		left:0px;
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+	}
+	#content{
+		margin-top: 50px;
+	}
+	#content p{
+		font-family: '微软雅黑';
+		font-size: 24px;
+		color: #1d1b1a;
+	}
+	#content p a{
+		color: #ec7150;
+	}
+	#content .tiaozhuan{
+		font-size: 14px;
+		font-weight: normal;
+		margin-top: 20px;
+	}
+</style>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<p>你访问的用户还没有到<b>工大学子易书网</b>呢...</p>
+	<p>去<a href="/publish/publishbook">发布区</a>看看 or 去<a href="/seek/seekbook">求书区</a></p>    
+	<!-- toHref 属性即为所要跳转的页面地址，注意不能省去http://,否则报错 -->
+	<p></p>
+	<p class="tiaozhuan"><span id="totalSecond" toHref="/index/index">5</span>秒之后自动跳转到<a href="/index/index">首页</a></p>
+</div>
+<script language="javascript" type="text/javascript">
+	var totalSecond = document.getElementById('totalSecond');
+	var second = totalSecond.textContent;
+	if (navigator.appName.indexOf("Explorer") > -1) {
+		second = totalSecond.innerText;
+	} else {
+		second = totalSecond.textContent;
+	}
+	setInterval(redirect, 1000);
+	function redirect() {
+		if (second < 0) {
+			location.href = totalSecond.getAttribute('toHref'); // 地址
+		} else {
+			if (navigator.appName.indexOf("Explorer") > -1) {
+				totalSecond.innerText = second--;
+			} else {
+				totalSecond.textContent = second--;
+			}
+		}
+	}
+</script>

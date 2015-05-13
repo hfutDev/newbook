@@ -1,0 +1,158 @@
+<style type="text/css">
+.zc_table{
+	width:100%;
+	color: #666;
+}
+.zc_table th{
+	background: #F0F7FF;
+	border: 1px solid #c9dae3;
+	border-bottom: none;
+	padding-top:2px;
+	line-height:30px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.zc_table td{
+	background: #fff;
+	border:1px solid #c9dae3;
+	line-height:28px;
+	padding:0 8px;
+	font-size:13px;
+}/*--20130711---Edit--*/
+.tabs .text-section {
+	background:#f9f9f9;
+	padding:19px 0 8px 36px;
+	margin:0 0 1px;
+}
+.nav-tabs{
+	height: 24px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+	margin-left: 0;
+}
+.nav-tabs>li{
+	margin-bottom: -1px;
+	float: left;
+	line-height: 20px;
+}
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover{
+	color: #555;
+	cursor: default;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+.nav-tabs>li>a{
+	padding: 8px 12px;
+	margin-right: 2px;
+	line-height: 20px;
+	border-radius: 4px 4px 0 0 ;
+}
+.nav-tabs>li>a:hover{
+	border-color: #eee #eee #ddd;
+	text-decoration: none;
+	background: #eee;
+}
+#content h2{
+	color: #333;
+	text-align: center;
+	font-size: 16px;
+}
+/*翻页*/
+/*===翻页=====*/
+.turn-page-wrap{
+	margin-right: 20px;
+	margin-bottom: 16px;
+	margin-top: 20px;
+	float: right;
+}
+.turn_page_ul li{
+	display: inline;
+	line-height: 25px;
+	margin: 0 6px;
+}
+.turn_page_ul li a{
+	color: #690;
+	border: 1px solid #690;
+	padding: 0 10px;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 13px;
+}
+.turn_page_ul li a:hover{
+	text-decoration: none;
+	background: #690;
+	color: #fff;
+}
+.cur-page,.total-page{
+	font-size: 14px;
+	font-weight: bold;
+}
+.cur-page{
+	font-family: 'Georgia';
+	font-size: 18px;
+}
+
+/*#footer-wrap{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}*/
+</style>
+<!-- content -->
+<div id="content" class="site-wrap">
+	<h2>同学预约信息</h2>
+	<div class="text-section">
+		<ul class="nav-tabs">
+			<li class="<?php echo $this->inStyle; ?>">
+				<a href="/drift/admin/type/1">预约已借出书籍</a>
+			</li>
+			<li class="<?php echo $this->outStyle; ?>">
+				<a href="/drift/admin/type/2">预约漂流中书籍</a>
+			</li>
+			<li>
+				<a href="/drift/todrifting">增加漂流书籍</a>
+			</li>
+			<li>
+				<a href="/drift/todriftpath">增加书籍漂流轨迹</a>
+			</li>
+			<li>
+				<a href="/drift/logout">注销登录</a>
+			</li>
+		</ul>
+	</div>
+	<table border="0" cellspacing="0" cellpadding="0" class="zc_table">
+          <tr>
+            <th>预约编号</th>
+            <th>书名</th>
+            <th>介绍</th>
+            <th>贡献者</th>
+            <th>预约人</th>
+            <th>电话号码</th>
+            <th>预约时间</th>
+          </tr>
+          <!-- 预约信息输出 start -->
+          <?php for ($i=0; $i < count($this->todriftInfo); $i++) { ?>
+          <tr>
+            <td align="center"><?php echo $this->todriftInfo[$i]['todrift_id']; ?></td>
+            <td align="center"><?php echo $this->driftInfo[$i]['book_name']; ?></td>
+            <td align="center"><?php echo $this->driftInfo[$i]['book_content']; ?></td>
+            <td align="center"><?php echo $this->driftInfo[$i]['book_owner']; ?></td>
+            <td align="center"><?php echo $this->todriftInfo[$i]['user']; ?></td>
+            <td align="center"><?php echo $this->todriftInfo[$i]['tel']; ?></td>
+            <td align="center"><?php echo $this->todriftInfo[$i]['time']; ?></td>
+          </tr>
+          <?php } ?>
+          <!-- 预约信息输出 end -->
+        </table>
+        <div class="turn-page-wrap">
+			<ul class="turn_page_ul">
+				<li class="first-page"><a style="<?php echo $this->pageNav['firstStyle']; ?>" href="<?php echo $this->pageNav['firstUrl']; ?>">首页</a></li>
+				<li class="pre-page"><a style="<?php echo $this->pageNav['preStyle']; ?>" href="<?php echo $this->pageNav['preUrl']; ?>">上一页</a></li>
+				<li style="color:#690;"><span class="cur-page"><?php echo $this->page; ?></span>/<span class="total-page"><?php echo $this->pages; ?></span></li>
+				<li class="next-page"><a style="<?php echo $this->pageNav['nextStyle']; ?>" href="<?php echo $this->pageNav['nextUrl']; ?>">下一页</a></li>
+				<li class="last-page"><a style="<?php echo $this->pageNav['lastStyle']; ?>" href="<?php echo $this->pageNav['lastUrl']; ?>">尾页</a></li>
+			</ul>
+		</div>
+</div>
+

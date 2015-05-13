@@ -1,0 +1,67 @@
+
+	<!-- 他的求书 -->
+	<h2  class="GM-h2"><img src="/images/guestmode-h201.png"></h2>
+	<div class='table_border GM-table-boeder'></div>
+	<table class="table_list GM-table">
+		<thead>
+			<tr>
+				<th>书名</th>
+				<th>喊话内容</th>
+				<th>求书时间</th>
+				<th>交易状态</th>
+			</tr>
+		</thead>
+		<tbody class='table_list_tbody'  style='display:table-row-group'>
+		<!-- 输出求书信息 start -->
+		<?php foreach ($this->buyBook as $buyValue) { ?>
+			<tr>
+				<td class="bookname-td"><?php echo $buyValue['buy_bookname']; ?></td>
+				<td  class="content-td" style="width:250px;"><?php echo $buyValue['buy_content']; ?></td>
+				<td><?php echo $buyValue['time']; ?></td>
+				<td class='dealing_state_going'>求书中</td>
+			</tr>
+		<?php } ?>
+		<!-- 输出求书信息 end -->
+		</tbody>
+	</table>
+	<div class="clear"></div>
+	<div class="turn-page-wrap">
+		<ul class="turn_page_ul">
+			<li class="last-page"><a href="/person/guestseek">更多</a></li>
+		</ul>
+	</div>
+	<!-- 他的发布 -->
+	<h2  class="GM-h2"><img src="/images/guestmode-h202.png"></h2>
+	<div class='table_border GM-table-boeder'></div>
+	<table class="table_list GM-table">
+		<thead>
+			<tr>
+				<th>书籍封面</th>
+				<th>书名</th>
+				<th>出版社</th>
+				<th>上架时间</th>
+				<th>过期时间</th>
+				<th>交易状态</th>
+			</tr>
+		</thead>
+		<tbody class='table_list_tbody'  style='display:table-row-group'>
+		<!-- 发布卖书信息 start-->
+		<?php for ($i=0; $i < count($this->saleBook['book']); $i++) { ?>
+			<tr>
+				<td style="padding-left:30px;"><a href="<?php echo $this->saleBook['book'][$i]['bookUrl'];?>"  class='book_border' title="点击查看"><img src="<?php echo $this->saleBook['book'][$i]['photo_path']; ?>" onload="$(this).resizeImage(true, 37,47)"></a></td>
+				<td class="bookname-td"><?php echo $this->saleBook['book'][$i]['book_name']; ?></td>
+				<td class="press-td"><?php echo $this->saleBook['book'][$i]['publish']; ?></td>
+				<td><?php echo $this->saleBook['sale'][$i]['start_time']; ?></td>
+				<td><?php echo $this->saleBook['sale'][$i]['end_time']; ?></td>
+				<td class='dealing_state_going'>交易中</td>
+			</tr>
+		<?php } ?>
+		<!-- 发布卖书信息 end-->
+		</tbody>
+	</table>
+	<div class="clear"></div>
+	<div class="turn-page-wrap">
+		<ul class="turn_page_ul">
+			<li class="last-page"><a href="/person/guestpublish">更多</a></li>
+		</ul>
+	</div>
