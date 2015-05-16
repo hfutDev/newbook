@@ -1,4 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 library
-application/configs/application.ini
+application/configs/*.ini
