@@ -52,8 +52,8 @@
         {
             //是否登录检测
             if (!$_SESSION['uid']) {
-                $url = array('url' => '/book/topublish');
-                $this->_forward('logbad', 'global', null, $url);
+//                $url = array('url' => '/book/topublish');
+//                $this->_forward('logbad', 'global', null, $url);
             }
         }
 

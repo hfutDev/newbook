@@ -5,102 +5,224 @@
 <script type="text/javascript" src="/js/plugin-UpLoadFileCheck.js"></script>
 <!-- content -->
 <div id="content" class="site-wrap">
-	<div class="publish-form-wrap">
-		<h2 class="title-h1">
-			<span class="title-h1-text">发布卖书信息</span>
-			<span class="required-item">*为必填项</span>
-			<div class="clear"></div>
-		</h2>
-		<form action="/book/publishchk" method="post" enctype="multipart/form-data" name='publish-form' class="publish-form">
-			<p class='book-name-p'>
-				<label for="bookname">*书名</label><input type="text" name='bookname' id='bookname' tabindex="26" /><i></i>
-			</p>
-			<p  class='press-p'>
-				<label for="press">*出版社</label><input type="text" name='press' tabindex="27"  id='press' /><i></i>
-			</p>
-			<p>
-				<span id='original-price-p'><label for="original-price">*原价</label><span><b class="add-on-icon">￥</b><input type="text" name="original-price" id="original-price" tabindex="28" /><i style="top:-10px;height:25px;line-height:25px;"></i></span>
-				</span>&nbsp;&nbsp;
-				<span id='going-price-p'><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input type="text" name="going-price" tabindex="29" id="going-price" /><i style="top:15px;"></i></span>
+    <div class="publish-form-wrap">
+        <h2 class="title-h1">
+            <span class="title-h1-text">发布卖书信息</span>
+            <span class="required-item">*为必填项</span>
+
+            <div class="clear"></div>
+        </h2>
+        <div class="switch-publish">
+            <span class="isbn-span">ISBN发布</span>
+            <span class="info-span">详情发布</span>
+
+            <div class="span-under"></div>
+        </div>
+        <form action="/book/publishchk" method="post" enctype="multipart/form-data" name='publish-form'
+              class="publish-form isbn-publish-form">
+            <p class="isbn">
+                <label for="isbn">*ISBN</label>
+                <input name="tel" id="isbn" type="text" tabindex="32"/><i class="isbn-btn">
+                    <img src="/images/isbn.jpg" style="cursor: pointer" alt=""/></i>
+            </p>
+
+            <div class="book-info">
+<!--                jsonp append-->
+<!--                <img class="isbn-img" src="http://img3.douban.com/mpic/s4500502.jpg" alt=""/>-->
+<!--                <ul class="isbn-info">-->
+<!--                    <li>书名：朱俊权威指南</li>-->
+<!--                    <li>作者：朱俊</li>-->
+<!--                    <li>出版社：朱俊出版社</li>-->
+<!--                    <li>原价：￥20.00</li>-->
+<!--                </ul>-->
+<!--                <div class="clear"></div>-->
+<!--                <div class="isbn-underline"></div>-->
+            </div>
+            <p>
+				<span id='going-price-p'><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input
+                            type="text" name="going-price" tabindex="29" id="going-price"/><i
+                            style="top:15px;"></i></span>
 				</span>
-			</p>
-			<p>
-				<label for="college">*适用学院</label>
-				<select name="college" class="for-xueyuan">
-				<!-- 学院输出 start -->
-				<?php foreach ($this->col as $colValue) { ?>
-					<option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
-				<?php } ?>
-				<!-- 学院输出 end -->
-				</select>
-				<i></i>
-			</p>
-			<div class="lable-wrap">
-				<dl class="lable-box">
-					<dt>标签</dt>
-					<dd>
-						<ul class="label-box-ul">
-							<!-- 输出动态标签 start -->
-						    <?php foreach ($this->hotLabel as $hotLabelValue) { ?>
-							    <li><a href="<?php echo $hotLabelValue['url']; ?>" target="_blank"><span><?php echo $hotLabelValue['label_name']; ?></span></a>
-						    <?php } ?>
-						    <!-- 输出动态标签 end -->
-							<div class="clear"></div>
-						</ul>
-					</dd>
-					<div class="clear"></div>
-				</dl>
-				<p class="cus-lable-p"><input type="text" value="您还可以自定义标签，以空格分割" tabindex="30" class="cus-label" />
-					<i></i></p>
-				<input type="hidden" name="get-lables" class="get-lables">
-				<div class="clear"></div>
-			</div>	
-			<p class="expiration-date-p">
-				<label for="expiration-date">*过期时间</label><input name="expiration-date" id="expiration-date" type="text" tabindex="31" onkeydown="return false" onkeyup="return false"  /><i></i>
-			</p>
-			<p class="book-cover-p">
-				<label for="">*书籍图片</label><a href="javascript:void(0)">上传图片<input name="book-cover" type="file" class="absol-0-0 update-file" onchange="updateFileCheck(this)"
-				/></a><i>图片须小于1M,格式为jpg,gif,png,jpeg</i>
-			</p>
-			<p class="tel-p">
-				<label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="32" /><i>电话会更新到你的个人信息</i>
-			</p>
-			<div class="book-des-p">
-				<label for="book-des-text">*书籍描述</label>
-				<div class="textarea-wrap">
-					<textarea id="book-des-text" name="bookdes" class="book-des-text-2"  placeholder="写下你对书籍的描述..." tabindex="33"></textarea>
-					<span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
-				<i style='top:60px;'></i>
-			</div>
-			<div class="submit-p">
-				<div class="val-code">
-					<label for="validation_code">*验证码</label>
-					<input type="text" tabindex="33" name="validation_code" id="validation_code_2" style="width: 76px;"><img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
-					<a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
-				</div>
-				<div class="publish-sumbit-btn-wrap">
-					<input type="submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34" value="确认发布" />
-				</div>
-				<div class="clear"></div>
-			</div>
-			<!-- <p class="validation-code-p">
-				<label for="validation-code">*验证码</label><input name="validation-code" id="validation-code" type="text" id="validation-code-input" />
-				<span><a href="javascript:void(0)"><img src="/global/vcode" alt="验证码" title="点击切换"></a></span>
-				<i>验证码不准确</i>
-			</p>
-			<p class="submit-p"><input type="submit" class="submit-btn" value="确认发布" /></p> -->
-		</form>
-	</div>
+            </p>
+
+            <p>
+                <label for="college">*分类</label>
+                <select name="college" class="for-xueyuan">
+                    <!-- 分类输出 start -->
+                    <?php foreach ($this->col as $colValue) { ?>
+                        <option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
+                    <?php } ?>
+                    <!-- 分类输出 end -->
+                </select>
+                <i></i>
+            </p>
+            <div class="lable-wrap">
+                <dl class="lable-box">
+                    <dt>标签</dt>
+                    <dd>
+                        <ul class="label-box-ul">
+                            <!-- 输出动态标签 start -->
+                            <?php foreach ($this->hotLabel as $hotLabelValue) { ?>
+                            <li><a href="<?php echo $hotLabelValue['url']; ?>"
+                                   target="_blank"><span><?php echo $hotLabelValue['label_name']; ?></span></a>
+                                <?php } ?>
+                                <!-- 输出动态标签 end -->
+                                <div class="clear"></div>
+                        </ul>
+                    </dd>
+                    <div class="clear"></div>
+                </dl>
+                <p class="cus-lable-p"><input type="text" value="您还可以自定义标签，以空格分割" tabindex="30" class="cus-label"/>
+                    <i></i></p>
+                <input type="hidden" name="get-lables" class="get-lables">
+
+                <div class="clear"></div>
+            </div>
+            <p class="expiration-date-p">
+                <label for="expiration-date">*过期时间</label><input name="expiration-date" id="expiration-date" type="text"
+                                                                 tabindex="31" onkeydown="return false"
+                                                                 onkeyup="return false"/><i></i>
+            </p>
+
+            <p class="tel-p">
+                <label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="32"/><i>电话会更新到你的个人信息</i>
+            </p>
+
+            <div class="book-des-p">
+                <label for="book-des-text">*书籍描述</label>
+
+                <div class="textarea-wrap">
+                    <textarea id="book-des-text" name="bookdes" class="book-des-text-2" placeholder="写下你对书籍的描述..."
+                              tabindex="33"></textarea>
+                    <span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+                <i style='top:60px;'></i>
+            </div>
+            <div class="submit-p">
+                <div class="val-code">
+                    <label for="validation_code">*验证码</label>
+                    <input type="text" tabindex="33" name="validation_code" id="validation_code_2" style="width: 76px;"><img
+                        id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+                    <a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+                </div>
+                <div class="publish-sumbit-btn-wrap">
+                    <input type="submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34"
+                           value="确认发布"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </form>
+        <form action="/book/publishchk" method="post" enctype="multipart/form-data" name='publish-form'
+              class="publish-form info-publish-form">
+            <p class='book-name-p'>
+                <label for="bookname">*书名</label><input type="text" name='bookname' id='bookname' tabindex="26"/><i></i>
+            </p>
+
+            <p class='press-p'>
+                <label for="press">*出版社</label><input type="text" name='press' tabindex="27" id='press'/><i></i>
+            </p>
+
+            <p>
+				<span id='original-price-p'><label for="original-price">*原价</label><span><b
+                            class="add-on-icon">￥</b><input type="text" name="original-price" id="original-price"
+                                                            tabindex="28"/><i
+                            style="top:-10px;height:25px;line-height:25px;"></i></span>
+				</span>&nbsp;&nbsp;
+				<span id='going-price-p'><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input
+                            type="text" name="going-price" tabindex="29" id="going-price"/><i
+                            style="top:15px;"></i></span>
+				</span>
+            </p>
+
+            <p>
+                <label for="college">*分类</label>
+                <select name="college" class="for-xueyuan">
+                    <!-- 分类输出 start -->
+                    <?php foreach ($this->col as $colValue) { ?>
+                        <option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
+                    <?php } ?>
+                    <!-- 分类输出 end -->
+                </select>
+                <i></i>
+            </p>
+            <div class="lable-wrap">
+                <dl class="lable-box">
+                    <dt>标签</dt>
+                    <dd>
+                        <ul class="label-box-ul">
+                            <!-- 输出动态标签 start -->
+                            <?php foreach ($this->hotLabel as $hotLabelValue) { ?>
+                            <li><a href="<?php echo $hotLabelValue['url']; ?>"
+                                   target="_blank"><span><?php echo $hotLabelValue['label_name']; ?></span></a>
+                                <?php } ?>
+                                <!-- 输出动态标签 end -->
+                                <div class="clear"></div>
+                        </ul>
+                    </dd>
+                    <div class="clear"></div>
+                </dl>
+                <p class="cus-lable-p"><input type="text" value="您还可以自定义标签，以空格分割" tabindex="30" class="cus-label"/>
+                    <i></i></p>
+                <input type="hidden" name="get-lables" class="get-lables">
+
+                <div class="clear"></div>
+            </div>
+            <p class="expiration-date-p">
+                <label for="expiration-date">*过期时间</label><input name="expiration-date" id="expiration-date" type="text"
+                                                                 tabindex="31" onkeydown="return false"
+                                                                 onkeyup="return false"/><i></i>
+            </p>
+
+            <p class="book-cover-p">
+                <label for="">*书籍图片</label><a href="javascript:void(0)">上传图片<input name="book-cover" type="file"
+                                                                                   class="absol-0-0 update-file"
+                                                                                   onchange="updateFileCheck(this)"
+                        /></a><i>图片须小于1M,格式为jpg,gif,png,jpeg</i>
+            </p>
+
+            <p class="tel-p">
+                <label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="32"/><i>电话会更新到你的个人信息</i>
+            </p>
+
+            <div class="book-des-p">
+                <label for="book-des-text">*书籍描述</label>
+
+                <div class="textarea-wrap">
+                    <textarea id="book-des-text" name="bookdes" class="book-des-text-2" placeholder="写下你对书籍的描述..."
+                              tabindex="33"></textarea>
+                    <span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+                <i style='top:60px;'></i>
+            </div>
+            <div class="submit-p">
+                <div class="val-code">
+                    <label for="validation_code">*验证码</label>
+                    <input type="text" tabindex="33" name="validation_code" id="validation_code_2" style="width: 76px;"><img
+                        id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+                    <a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+                </div>
+                <div class="publish-sumbit-btn-wrap">
+                    <input type="submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34"
+                           value="确认发布"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- <p class="validation-code-p">
+                <label for="validation-code">*验证码</label><input name="validation-code" id="validation-code" type="text" id="validation-code-input" />
+                <span><a href="javascript:void(0)"><img src="/global/vcode" alt="验证码" title="点击切换"></a></span>
+                <i>验证码不准确</i>
+            </p>
+            <p class="submit-p"><input type="submit" class="submit-btn" value="确认发布" /></p> -->
+        </form>
+    </div>
 </div>
 <script>
-	$(function() {
-		$( "#expiration-date" ).datepicker({ 
-			minDate: 0, 
-			maxDate: "+6M", 
-			dateFormat: "yy-mm-dd",
-			 firstDay: 1,
-			 inline:true
-		});
-	});
+    $(function () {
+        $("#expiration-date").datepicker({
+            minDate: 0,
+            maxDate: "+6M",
+            dateFormat: "yy-mm-dd",
+            firstDay: 1,
+            inline: true
+        });
+    });
 </script>
 
