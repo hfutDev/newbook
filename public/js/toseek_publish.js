@@ -112,8 +112,6 @@ $(function () {
         reg_text: "用户名必须由不多于20个字符组成",
         regExp: log_name_reg
     }, regCheck);
-    // $('#expiration-date').bind('blur',{condition:'dateChec',text:"日期",reg_text:"日期不能为空"},regCheck)
-    // 检测格式
 
     function regCheck(event) { // 格式检查
         var reg = eval('(' + event.data.regExp + ')');
@@ -284,9 +282,6 @@ $(function () {
         })
     });
 
-    $('#expiration-date').focus(function () {
-        $(this).closest('p').find('i').html('');
-    });
     $('#validation_code_2').live('focus', {target: ".val-code"}, valCodeCheck)
 
     // 买书提交
@@ -301,49 +296,8 @@ $(function () {
         }
     });
 
-    //发布表单选择
-    $('.switch-publish span').bind("click", function () {
-        var index = $(this).index();
-        //移动表单选择的下划线
-        $('.span-under').animate({left: 87 * index + "px"}, 400);
-        //显示对应的表单
-        $('.publish-form').fadeOut();
-        $('.publish-form').eq(index).fadeIn();
-    });
-
-    //检测ISBN输入框
-    $('.isbn-btn').bind("click", function () {
-        var isbn = $('#isbn').val();
-        $.ajax({
-            url: "https://api.douban.com/v2/book/isbn/" + isbn,
-            dataType: "jsonp",
-            success: function (json) {
-                $('.book-info').empty().hide();
-                var tempDom =
-                    '<img class="isbn-img" src="'
-                    + json.image
-                    + '" alt="图书图片"/>'
-                    + '<ul class="isbn-info"><li>书名：'
-                    + json.title
-                    + '</li><li>作者：'
-                    + json.author
-                    + '</li><li>出版社：'
-                    + json.publisher
-                    + '</li><li>原价：￥'
-                    + json.price +
-                    '</li></ul><div class="clear"></div><div class="isbn-underline"></div>';
-                $('.book-info').append(tempDom).show();
-                console.log(json);
-            },
-            error: function () {
-                console.log('fail');
-            }
-        });
-    });
-
     // 卖书提交
     $('.publish-sumbit-btn').click(function () {
-        var _date = $('#expiration-date');
         var date = _date.val();
         if ((date != "")) {
             _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
@@ -387,7 +341,6 @@ $(function () {
     });
     // 获赠提交
     $('.feedback-sumbit-btn').click(function () {
-        var _date = $('#expiration-date');
         var date = _date.val();
         if ((date != "")) {
             _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
@@ -437,6 +390,71 @@ $(function () {
             return true;
         }
     })
+
+
+//zhujun24 add start,各种class id混在一起，既要保持样式一致，还要把用class id绑定的事件分开 WTF
+
+//发布表单选择
+    $('.switch-publish span').bind("click", function () {
+        var index = $(this).index();
+        //移动表单选择的下划线
+        $('.span-under').animate({left: 87 * index + "px"}, 400);
+        //显示对应的表单
+        $('.publish-form').fadeOut();
+        $('.publish-form').eq(index).fadeIn();
+    });
+
+//检测ISBN输入框
+    function substr(str, len) {
+        var a = 0;
+        var temp = '';
+        for (var i = 0; i < str.length; i++) {
+            if (str.charCodeAt(i) > 255) {
+                a += 2;
+            }
+            else {
+                a++;
+            }
+            if (a > len) {
+                return temp;
+            }
+            temp += str.charAt(i);
+        }
+        return temp;
+    }
+
+    $('.isbn-btn').bind("click", function () {
+        var isbn = $('#isbn').val();
+        $.ajax({
+            //感谢豆瓣提供的图书ISBN查询API
+            url: "https://api.douban.com/v2/book/isbn/" + isbn,
+            dataType: "jsonp",
+            success: function (json) {
+                $('.book-info').empty().hide();
+                var tempDom =
+                    '<img class="isbn-img" src="'
+                    + json.image
+                    + '" alt="图书图片"/>'
+                    + '<ul class="isbn-info"><li>书名：<span>'
+                    + json.title
+                    + '</span></li><li>作者：<span>'
+                    + json.author
+                    + '</span></li><li>出版社：<span>'
+                    + json.publisher
+                    + '</span></li><li>原价：￥<span>'
+                    + json.price +
+                    '</span></li></ul><div class="clear"></div><div class="isbn-underline"></div>';
+                $('.book-info').append(tempDom).show();
+                $('.isbn-textarea').val(substr(json.summary, 200));
+                console.log(json.summary.length);
+            },
+            error: function () {
+                console.log('fail');
+            }
+        });
+    });
+
+
 });
 function getLabels() {
     var arrLabel = new Array();  //储存标签

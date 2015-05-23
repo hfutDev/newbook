@@ -18,8 +18,7 @@
 
             <div class="span-under"></div>
         </div>
-        <form action="/book/publishchk" method="post" enctype="multipart/form-data" name='publish-form'
-              class="publish-form isbn-publish-form">
+        <form class="publish-form isbn-publish-form">
             <p class="isbn">
                 <label for="isbn">*ISBN</label>
                 <input name="tel" id="isbn" type="text" tabindex="32"/><i class="isbn-btn">
@@ -30,18 +29,18 @@
 <!--                jsonp append-->
 <!--                <img class="isbn-img" src="http://img3.douban.com/mpic/s4500502.jpg" alt=""/>-->
 <!--                <ul class="isbn-info">-->
-<!--                    <li>书名：朱俊权威指南</li>-->
-<!--                    <li>作者：朱俊</li>-->
-<!--                    <li>出版社：朱俊出版社</li>-->
-<!--                    <li>原价：￥20.00</li>-->
+<!--                    <li>书名：<span>朱俊权威指南</span></li>-->
+<!--                    <li>作者：<span>朱俊</span></li>-->
+<!--                    <li>出版社：<span>朱俊出版社</span></li>-->
+<!--                    <li>原价：￥<span>20.00</span></li>-->
 <!--                </ul>-->
 <!--                <div class="clear"></div>-->
 <!--                <div class="isbn-underline"></div>-->
             </div>
             <p>
-				<span id='going-price-p'><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input
-                            type="text" name="going-price" tabindex="29" id="going-price"/><i
-                            style="top:15px;"></i></span>
+				<span id="going-price-p"><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b>
+                        <input type="text" name="going-price" tabindex="29" id="isbn-going-price"/>
+                        <i style="top:15px;"></i></span>
 				</span>
             </p>
 
@@ -78,21 +77,18 @@
 
                 <div class="clear"></div>
             </div>
-            <p class="expiration-date-p">
-                <label for="expiration-date">*过期时间</label><input name="expiration-date" id="expiration-date" type="text"
-                                                                 tabindex="31" onkeydown="return false"
-                                                                 onkeyup="return false"/><i></i>
-            </p>
 
             <p class="tel-p">
-                <label for="tel">*手机号码</label><input name="tel" id="tel" type="text" tabindex="32"/><i>电话会更新到你的个人信息</i>
+                <label for="tel">*手机号码</label>
+                <input name="tel" type="text" tabindex="32"/>
+                <i>电话会更新到你的个人信息</i>
             </p>
 
             <div class="book-des-p">
                 <label for="book-des-text">*书籍描述</label>
 
                 <div class="textarea-wrap">
-                    <textarea id="book-des-text" name="bookdes" class="book-des-text-2" placeholder="写下你对书籍的描述..."
+                    <textarea name="bookdes" class="isbn-textarea" placeholder="写下你对书籍的描述..."
                               tabindex="33"></textarea>
                     <span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
                 <i style='top:60px;'></i>
@@ -127,7 +123,7 @@
                                                             tabindex="28"/><i
                             style="top:-10px;height:25px;line-height:25px;"></i></span>
 				</span>&nbsp;&nbsp;
-				<span id='going-price-p'><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input
+				<span id="going-price-p"><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b><input
                             type="text" name="going-price" tabindex="29" id="going-price"/><i
                             style="top:15px;"></i></span>
 				</span>
@@ -166,12 +162,6 @@
 
                 <div class="clear"></div>
             </div>
-            <p class="expiration-date-p">
-                <label for="expiration-date">*过期时间</label><input name="expiration-date" id="expiration-date" type="text"
-                                                                 tabindex="31" onkeydown="return false"
-                                                                 onkeyup="return false"/><i></i>
-            </p>
-
             <p class="book-cover-p">
                 <label for="">*书籍图片</label><a href="javascript:void(0)">上传图片<input name="book-cover" type="file"
                                                                                    class="absol-0-0 update-file"

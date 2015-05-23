@@ -119,6 +119,11 @@
     *margin-top: -1px;
 }
 
+input#isbn-going-price{
+    position: relative;
+    left: -5px;
+}
+
 .add-on-icon {
     vertical-align: top;
     display: inline-block;
@@ -313,11 +318,6 @@
     padding: 4px 8px;
 }
 
-#expiration-date {
-    cursor: pointer;
-    background-color: #eee;
-}
-
 .cus-lable-p {
     height: 30px;
 }
@@ -329,6 +329,10 @@
 }
 
 .for-xueyuan {
+    margin-left: 10px;
+}
+
+.for-isbn-class {
     margin-left: 10px;
 }
 
