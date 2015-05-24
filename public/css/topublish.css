@@ -288,7 +288,7 @@ input#isbn-going-price{
     left: 328px;
 }
 
-.val-code #validation_code_2, .val-code img {
+.val-code #validation_code_2,.val-code #validation_code_1, .val-code img {
     display: inline-block;
     margin-left: 8px;
     vertical-align: bottom;
@@ -391,6 +391,25 @@ input#isbn-going-price{
     height: 2px;
     margin: 20px 0 10px 0;
     background-color: #f09376;
+}
+
+#going-price-p{
+    width: 350px;
+}
+
+#going-price-p>span.isbn-going-price{
+    width: 422px;
+}
+
+#going-price-i{
+    position: relative;
+    left: 0px;
+}
+
+.contactSwitch{
+    color: #000;
+    font-family: "微软雅黑";
+    font-size: 18px;
 }
 
 *{

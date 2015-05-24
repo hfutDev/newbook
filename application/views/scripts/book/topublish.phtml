@@ -21,8 +21,8 @@
         <form class="publish-form isbn-publish-form">
             <p class="isbn">
                 <label for="isbn">*ISBN</label>
-                <input name="tel" id="isbn" type="text" tabindex="32"/><i class="isbn-btn">
-                    <img src="/images/isbn.jpg" style="cursor: pointer" alt=""/></i>
+                <input name="tel" id="isbn" type="text" tabindex="32"/>
+                <i class="isbn-btn"><img src="/images/isbn.jpg" style="cursor: pointer" alt=""/></i>
             </p>
 
             <div class="book-info">
@@ -38,15 +38,19 @@
                 <!--                <div class="isbn-underline"></div>-->
             </div>
             <p>
-				<span id="going-price-p"><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b>
+				<span id="going-price-p">
+                    <label for="going-price">*现价</label>
+                    <span class="isbn-going-price">
+                        <b class="add-on-icon">￥</b>
                         <input type="text" name="going-price" tabindex="29" id="isbn-going-price"/>
-                        <i style="top:15px;"></i></span>
+                        <i id="going-price-i"></i>
+                    </span>
 				</span>
             </p>
 
             <p>
                 <label for="college">*分类</label>
-                <select name="college" class="for-xueyuan">
+                <select name="college" class="for-isbn-class">
                     <!-- 分类输出 start -->
                     <?php foreach ($this->col as $colValue) { ?>
                         <option value="<?php echo $colValue['col_id']; ?>"><?php echo $colValue['college']; ?></option>
@@ -78,10 +82,18 @@
                 <div class="clear"></div>
             </div>
 
+            <p class="contactSwitch">*联系方式（至少选填一项）</p>
+
             <p class="tel-p">
-                <label for="tel">*手机号码</label>
+                <label for="tel">手机号码</label>
                 <input class="phone" name="tel" type="text" tabindex="32"/>
                 <i>电话会更新到你的个人信息</i>
+            </p>
+
+            <p class="tel-p">
+                <label for="qq">QQ号码</label>
+                <input class="qq" name="qq" type="text" tabindex="32"/>
+                <i></i>
             </p>
 
             <div class="book-des-p">
@@ -93,15 +105,18 @@
                 </div>
                 <i style='top:60px;'></i>
             </div>
+
             <div class="submit-p">
                 <div class="val-code">
                     <label for="validation_code">*验证码</label>
-                    <input type="text" tabindex="33" name="validation_code" id="validation_code_2" style="width: 76px;"><img
-                        id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
-                    <a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
+                    <input type="text" tabindex="33" name="validation_code" id="validation_code_1" maxlength="4" style="width: 76px;">
+                    <img id="code" onclick="creatCode()" title="点击切换" src="/global/vcode">
+                    <a href="javascript:void(0)" onclick="creatCode()">换一张</a>
+                    <i></i>
                 </div>
                 <div class="publish-sumbit-btn-wrap">
-                    <input type="button" id="isbn-submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34"
+                    <input type="button" id="isbn-submit" class="submit-btn publish-sumbit-btn"
+                           name="publish-sumbit-btn" tabindex="34"
                            value="确认发布"/>
                 </div>
                 <div class="clear"></div>

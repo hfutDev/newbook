@@ -67,6 +67,7 @@ $(function () {
     var lable_reg = new RegExp(/^[a-zA-Z0-9\u4E00-\u9FFF]{1,10}\s*?[a-zA-Z0-9\u4E00-\u9FFF]{0,10}\s*?[a-zA-Z0-9\u4E00-\u9FFF]{0,10}\s*?[a-zA-Z0-9\u4E00-\u9FFF]{0,10}$/);
     var log_name_reg = new RegExp(/.{1,20}$/);
     var password_reg = new RegExp(/.{1,20}$/);
+    var qq_reg = new RegExp(/^[^0]\d{4,9}$/);
     $('#press').bind('blur', {
         condition: 'press',
         text: "出版社",
@@ -403,9 +404,10 @@ $(function () {
     });
 
 
-//zhujun24 add start,各种class id混在一起，既要保持样式一致，还要把用class id绑定的事件分开 WTF
-
-//发布表单选择
+    //zhujun24 add start,各种class id混在一起，既要保持样式一致，还要把用class id绑定的事件分开 WTF
+    var isbnData,
+        data = {};
+    //发布表单选择
     $('.switch-publish span').bind("click", function () {
         var index = $(this).index();
         //移动表单选择的下划线
@@ -415,7 +417,7 @@ $(function () {
         $('.publish-form').eq(index).fadeIn();
     });
 
-//检测ISBN输入框
+    //检测ISBN输入框
     function strLength(str) {
         var a = 0;
         for (var i = 0; i < str.length; i++) {
@@ -429,7 +431,7 @@ $(function () {
         return a;
     }
 
-    function substr(str, len) {
+    function substr6(str, len) {
         if (strLength(str) <= len) {
             return str;
         } else {
@@ -455,6 +457,7 @@ $(function () {
             url: "https://api.douban.com/v2/book/isbn/" + isbn,
             dataType: "jsonp",
             success: function (json) {
+                isbnData = json;
                 $('.book-info').empty().hide();
                 var tempDom =
                     '<img class="isbn-img" src="'
@@ -470,7 +473,7 @@ $(function () {
                     + json.price +
                     '</span></li></ul><div class="clear"></div><div class="isbn-underline"></div>';
                 $('.book-info').append(tempDom).show();
-                $('.isbn-textarea').val(substr(json.summary, 200));
+                $('.isbn-textarea').val(substr6(json.summary, 200));
             },
             error: function () {
                 console.log('没有找到该图书或ISBN输入错误');
@@ -478,6 +481,7 @@ $(function () {
         });
     }
 
+    //点击按钮或者回车获取图书ISBN信息
     $('.isbn-btn').bind("click", function () {
         ISBNJsonp($('#isbn').val());
     });
@@ -490,12 +494,18 @@ $(function () {
 
 
     //各种表单验证
-    var tel_reg;
     $('.phone').bind('blur', function () {
         if (tel_reg.test($(this).val())) {
             $(this).next().html('<img src="/images/right-icon.png" align="absmiddle">');
         } else {
             $(this).next().html("手机号码须由13/15/18/0551开头的11位或者12位数字组成");
+        }
+    });
+    $('.qq').bind('blur', function () {
+        if (qq_reg.test($(this).val())) {
+            $(this).next().html('<img src="/images/right-icon.png" align="absmiddle">');
+        } else {
+            $(this).next().html("QQ号码须5-10位数字组成");
         }
     });
 
@@ -514,13 +524,102 @@ $(function () {
 
         $('.isbnWordChange').html(100 - Math.floor(currentLength / 2));
         if (currentLength >= 200) {
-            $(this).val(substr(isbnTextarea, 200));
+            $(this).val(substr6(isbnTextarea, 200));
         }
     });
 
+    $('#isbn-going-price').bind('blur', function () {
+        var result = testPrice($(this).val());
+        if (result) {
+            $(this).next().html('<img src="/images/right-icon.png" align="absmiddle">');
+        } else {
+            $(this).next().html('现价由数字和小数点组成，至多保留两位小数');
+        }
+    });
+
+    $('#validation_code_1').bind('input propertychange', function () {
+        var code = $(this).val();
+        if (code.length == 4) {
+            $.ajax({
+                method: "POST",
+                url: "/global/vcodechk",
+                data: {
+                    valCode: code
+                }
+            }).success(function (msg) {
+                if(msg == "sucess"){
+                    data.code = true;
+                    $(this).next().next().next().html('<img src="/images/right-icon.png" align="absmiddle">');
+                }else{
+                    data.code = false;
+                    $(this).next().next().next().html("验证码错误");
+                }
+            });
+        }
+    });
+
+    //终于提交
     $('#isbn-submit').bind('click', function () {
+        //检测ISBN
+        if (!isbnData) {
+            alert("请输入有效的ISBN编号并点击输入框右边的按钮或者按下回车键");
+            return false;
+        } else {
+            data.name = isbnData.title;
+            data.publisher = isbnData.publisher;
+            data.image = isbnData.image;
+            data.originPrice = isbnData.price;
+            data.author = isbnData.author;
+        }
+
+        //检测现价
+        var currentPrice = $('#isbn-going-price').val();
+        if (!testPrice(currentPrice)) {
+            alert("现价由数字和小数点组成，至多保留两位小数");
+            return false;
+        } else {
+            data.currentPrice = currentPrice;
+        }
+
+        //检测标签
         getISBNLabels();
-        console.log($('.isbn-get-lables').val());
+        var label = $('.isbn-get-lables').val();
+        if (!label) {
+            alert("请为图书选择一个或多个标签");
+            return false;
+        } else {
+            data.labels = label;
+        }
+
+        //检测联系方式
+        if (!tel_reg.test($('.phone').val()) && !qq_reg.test($('.qq').val())) {
+            alert("请输入有效的手机号码或者QQ号码");
+            return false;
+        } else {
+            data.phone = tel_reg.test($('.phone').val()) ? $('.phone').val() : '';
+            data.qq = qq_reg.test($('.qq').val()) ? $('.qq').val() : '';
+        }
+
+        //检测验证码
+        if(!data.code){
+            alert("请输入正确的验证码");
+            return false;
+        }
+
+        data.des = $.trim($('.isbn-textarea').val());
+        data.type = $('.for-isbn-class').val();
+        console.log(data);
+
+        //$.ajax({
+        //    method: "POST",
+        //    url: "/global/vcodechk",
+        //    data: data
+        //}).success(function (msg) {
+        //    //处理提交结果
+        //    if(msg){
+        //    }else{
+        //    }
+        //});
     });
 
 
@@ -539,6 +638,7 @@ function getLabels() {
     var all_label = gived_label + ' ' + arr_cusLabel;
     $('.get-lables').val(all_label);
 }
+
 function getISBNLabels() {
     var arrLabel = new Array();  //储存标签
     var arr_cusLabel, gived_label = '';
@@ -552,4 +652,35 @@ function getISBNLabels() {
     gived_label = arrLabel.join(' ');
     var all_label = gived_label + ' ' + $.trim(arr_cusLabel);
     $('.isbn-get-lables').val(all_label);
+}
+
+function testPrice(str) {
+    if (str) {
+        var targetStr = "0123456789.";
+        for (var i = 0, l = str.length; i < l; i++) {
+            if (targetStr.indexOf(str[i]) == -1) {
+                return false;
+            }
+        }
+        //检测小数点
+        var pointNum = (str.split('.')).length - 1;
+        if (pointNum) {
+            if (pointNum > 1) {
+                return false;
+            }
+            var pointPos = str.indexOf(".");
+            //检测小数点前的字符串
+            if (!pointPos) {
+                return false;
+            }
+            var afterPoint = str.substr(pointPos + 1);
+            //检测小数点后的字符串
+            if (afterPoint.length > 2) {
+                return false;
+            }
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
