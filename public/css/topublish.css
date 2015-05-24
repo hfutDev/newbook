@@ -82,12 +82,7 @@
     font-size: 14px;
 }
 
-.wordChange {
-    font-size: 26px;
-    font-family: "Georgia";
-}
-
-.isbnWordChange {
+.wordChange,.isbnWordChange {
     font-size: 26px;
     font-family: "Georgia";
 }
@@ -196,11 +191,11 @@ input#isbn-going-price{
 }
 
 /*标签*/
-.label-box-ul {
+.label-box-ul,.isbn-label-box-ul {
     padding: 8px;
 }
 
-.label-box-ul > li {
+.label-box-ul > li,.isbn-label-box-ul>li {
     position: relative;
     float: left;
     display: inline;
@@ -211,7 +206,7 @@ input#isbn-going-price{
     background: #fff;
 }
 
-.label-box-ul > li a {
+.label-box-ul > li a,.isbn-label-box-ul>li>a {
     display: inline-block;
     min-width: 10px;
     padding: 0 6px;
@@ -222,17 +217,17 @@ input#isbn-going-price{
     border: 1px solid #c8c9cd;
 }
 
-.label-box-ul > li a:hover, .label-box-ul .selected a {
+.label-box-ul > li a:hover, .label-box-ul .selected a,.isbn-label-box-ul > li a:hover, .isbn-label-box-ul .selected a {
     margin: -1px;
     border: 2px solid #ec7150;
     text-decoration: none;
 }
 
-.label-box-ul > li a:focus {
+.label-box-ul > li a:focus,.isbn-label-box-ul > li a:focus {
     outline: 0;
 }
 
-.label-box-ul > li strong {
+.label-box-ul > li strong,.isbn-label-box-ul > li strong {
     display: block;
     position: absolute;
     bottom: 0px;
@@ -327,17 +322,13 @@ input#isbn-going-price{
     height: 30px;
 }
 
-.cus-label {
+.cus-label,.isbn-cus-label {
     position: absolute;
     left: 100px;
     top: 0px;
 }
 
-.for-xueyuan {
-    margin-left: 10px;
-}
-
-.for-isbn-class {
+.for-xueyuan,.for-isbn-class {
     margin-left: 10px;
 }
 

@@ -38,6 +38,17 @@ $(function () {
             $(this).find('strong').remove();
         })
     });
+    $('.isbn-label-box-ul li').each(function (i) { // 自定义标签
+        var _this = $(this);
+        var label_val = _this.find('span').text();
+        _this.toggle(function (i) {
+            _this.addClass("selected");
+            _this.append('<strong>已选中</strong>');
+        }, function (i) {
+            $(this).removeClass("selected");
+            $(this).find('strong').remove();
+        })
+    });
     // 格式检验
     var bookname = false, content = false, dateChec = false,
         press = false, ori_price = false, go_price = false, tel = false,
@@ -508,6 +519,7 @@ $(function () {
     });
 
     $('#isbn-submit').bind('click', function () {
+        getISBNLabels();
         console.log($('.isbn-get-lables').val());
     });
 
@@ -526,4 +538,18 @@ function getLabels() {
     gived_label = arrLabel.join(' ');
     var all_label = gived_label + ' ' + arr_cusLabel;
     $('.get-lables').val(all_label);
+}
+function getISBNLabels() {
+    var arrLabel = new Array();  //储存标签
+    var arr_cusLabel, gived_label = '';
+    $('.isbn-label-box-ul li').each(function () { // 取得可选的标签
+        var val = $(this).find('span').text();
+        if ($(this).hasClass("selected")) {
+            arrLabel.push(val)
+        }
+    });
+    arr_cusLabel = $('.isbn-cus-label').val() != "您还可以自定义标签，以空格分割" ? $('.isbn-cus-label').val() : '';
+    gived_label = arrLabel.join(' ');
+    var all_label = gived_label + ' ' + $.trim(arr_cusLabel);
+    $('.isbn-get-lables').val(all_label);
 }
