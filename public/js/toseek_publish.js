@@ -297,7 +297,7 @@ $(function () {
     });
 
     // 卖书提交
-    $('.publish-sumbit-btn').click(function () {
+    $('.publish-sumbit-btn').eq(1).click(function () {
         var date = _date.val();
         if ((date != "")) {
             _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
@@ -389,7 +389,7 @@ $(function () {
             // alert($('.update-file').val())
             return true;
         }
-    })
+    });
 
 
 //zhujun24 add start,各种class id混在一起，既要保持样式一致，还要把用class id绑定的事件分开 WTF
@@ -405,9 +405,8 @@ $(function () {
     });
 
 //检测ISBN输入框
-    function substr(str, len) {
+    function strLength(str) {
         var a = 0;
-        var temp = '';
         for (var i = 0; i < str.length; i++) {
             if (str.charCodeAt(i) > 255) {
                 a += 2;
@@ -415,16 +414,31 @@ $(function () {
             else {
                 a++;
             }
-            if (a > len) {
-                return temp;
-            }
-            temp += str.charAt(i);
         }
-        return temp;
+        return a;
     }
 
-    $('.isbn-btn').bind("click", function () {
-        var isbn = $('#isbn').val();
+    function substr(str, len) {
+        if (strLength(str) <= len) {
+            return str;
+        } else {
+            var a = 0;
+            var temp = '';
+            for (var i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) > 255) {
+                    a += 2;
+                } else {
+                    a++;
+                }
+                temp += str[i];
+                if (Math.ceil(a / 2) >= len / 2) {
+                    return temp;
+                }
+            }
+        }
+    }
+
+    function ISBNJsonp(isbn) {
         $.ajax({
             //感谢豆瓣提供的图书ISBN查询API
             url: "https://api.douban.com/v2/book/isbn/" + isbn,
@@ -446,12 +460,55 @@ $(function () {
                     '</span></li></ul><div class="clear"></div><div class="isbn-underline"></div>';
                 $('.book-info').append(tempDom).show();
                 $('.isbn-textarea').val(substr(json.summary, 200));
-                console.log(json.summary.length);
             },
             error: function () {
-                console.log('fail');
+                console.log('没有找到该图书或ISBN输入错误');
             }
         });
+    }
+
+    $('.isbn-btn').bind("click", function () {
+        ISBNJsonp($('#isbn').val());
+    });
+
+    $('#isbn').bind('keypress', function (event) {
+        if (event.keyCode == "13") {
+            ISBNJsonp($(this).val());
+        }
+    });
+
+
+    //各种表单验证
+    var tel_reg;
+    $('.phone').bind('blur', function () {
+        if (tel_reg.test($(this).val())) {
+            $(this).next().html('<img src="/images/right-icon.png" align="absmiddle">');
+        } else {
+            $(this).next().html("手机号码须由13/15/18/0551开头的11位或者12位数字组成");
+        }
+    });
+
+    $('.isbn-textarea').bind('blur', function () {
+        var isbnTextarea = $.trim($(this).val());
+        if (!isbnTextarea) {
+            $(this).parent().next().html("喊话内容不能为空");
+        } else {
+            $(this).parent().next().html('<img src="/images/right-icon.png" align="absmiddle">');
+        }
+    });
+
+    $('.isbn-textarea').bind('input propertychange', function () {
+        var isbnTextarea = $.trim($(this).val());
+        var currentLength = strLength(isbnTextarea);
+
+        $('.isbnWordChange').html(100 - Math.floor(currentLength / 2));
+        if (currentLength >= 200) {
+            $(this).val(substr(isbnTextarea, 200));
+        }
+    });
+
+    $('#isbn-submit').bind('click', function () {
+        console.log($('.isbn-get-lables').val());
     });
 
 

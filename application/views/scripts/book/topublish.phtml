@@ -26,16 +26,16 @@
             </p>
 
             <div class="book-info">
-<!--                jsonp append-->
-<!--                <img class="isbn-img" src="http://img3.douban.com/mpic/s4500502.jpg" alt=""/>-->
-<!--                <ul class="isbn-info">-->
-<!--                    <li>书名：<span>朱俊权威指南</span></li>-->
-<!--                    <li>作者：<span>朱俊</span></li>-->
-<!--                    <li>出版社：<span>朱俊出版社</span></li>-->
-<!--                    <li>原价：￥<span>20.00</span></li>-->
-<!--                </ul>-->
-<!--                <div class="clear"></div>-->
-<!--                <div class="isbn-underline"></div>-->
+                <!--                jsonp append-->
+                <!--                <img class="isbn-img" src="http://img3.douban.com/mpic/s4500502.jpg" alt=""/>-->
+                <!--                <ul class="isbn-info">-->
+                <!--                    <li>书名：<span>朱俊权威指南</span></li>-->
+                <!--                    <li>作者：<span>朱俊</span></li>-->
+                <!--                    <li>出版社：<span>朱俊出版社</span></li>-->
+                <!--                    <li>原价：￥<span>20.00</span></li>-->
+                <!--                </ul>-->
+                <!--                <div class="clear"></div>-->
+                <!--                <div class="isbn-underline"></div>-->
             </div>
             <p>
 				<span id="going-price-p"><label for="going-price">*现价</label><span><b class="add-on-icon">￥</b>
@@ -73,14 +73,14 @@
                 </dl>
                 <p class="cus-lable-p"><input type="text" value="您还可以自定义标签，以空格分割" tabindex="30" class="cus-label"/>
                     <i></i></p>
-                <input type="hidden" name="get-lables" class="get-lables">
+                <input type="hidden" name="get-lables" class="isbn-get-lables">
 
                 <div class="clear"></div>
             </div>
 
             <p class="tel-p">
                 <label for="tel">*手机号码</label>
-                <input name="tel" type="text" tabindex="32"/>
+                <input class="phone" name="tel" type="text" tabindex="32"/>
                 <i>电话会更新到你的个人信息</i>
             </p>
 
@@ -88,9 +88,9 @@
                 <label for="book-des-text">*书籍描述</label>
 
                 <div class="textarea-wrap">
-                    <textarea name="bookdes" class="isbn-textarea" placeholder="写下你对书籍的描述..."
-                              tabindex="33"></textarea>
-                    <span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="wordChange">100</strong>/100</span></div>
+                    <textarea name="bookdes" class="isbn-textarea" placeholder="写下你对书籍的描述..." tabindex="33"></textarea>
+                    <span class="wordCheck">您还可输入:&nbsp;&nbsp;<strong class="isbnWordChange">100</strong>/100</span>
+                </div>
                 <i style='top:60px;'></i>
             </div>
             <div class="submit-p">
@@ -101,7 +101,7 @@
                     <a href="javascript:void(0)" onclick="creatCode()">换一张</a><i></i>
                 </div>
                 <div class="publish-sumbit-btn-wrap">
-                    <input type="submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34"
+                    <input type="button" id="isbn-submit" class="submit-btn publish-sumbit-btn" name="publish-sumbit-btn" tabindex="34"
                            value="确认发布"/>
                 </div>
                 <div class="clear"></div>

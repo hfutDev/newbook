@@ -87,6 +87,11 @@
     font-family: "Georgia";
 }
 
+.isbnWordChange {
+    font-size: 26px;
+    font-family: "Georgia";
+}
+
 .publish-form {
     margin-left: 140px;
     margin-top: 40px;
