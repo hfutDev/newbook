@@ -341,7 +341,7 @@ input#isbn-going-price{
 }
 
 .switch-publish{
-    width: 174px;
+    width: 194px;
     height: 34px;
     margin: 40px auto 0 auto;
 }
@@ -363,6 +363,10 @@ input#isbn-going-price{
 
 .book-info{
     display: none;
+}
+
+.isbn-span{
+    margin-right: 20px;
 }
 
 .isbn-img{

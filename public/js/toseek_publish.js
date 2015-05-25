@@ -411,7 +411,7 @@ $(function () {
     $('.switch-publish span').bind("click", function () {
         var index = $(this).index();
         //移动表单选择的下划线
-        $('.span-under').animate({left: 87 * index + "px"}, 400);
+        $('.span-under').animate({left: 107 * index + "px"}, 400);
         //显示对应的表单
         $('.publish-form').fadeOut();
         $('.publish-form').eq(index).fadeIn();
