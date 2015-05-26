@@ -45,7 +45,7 @@
 					<a href='<?php echo $this->hotLabel[$i]['labelUrl']; ?>'><?php echo $this->hotLabel[$i]['label_name']; ?></a>
 					<?php } ?>
 					<!-- 输出热门搜索词  end-->
-				</p>
+				</p>base-dialog-handle
 			</div>
 			<div class="clear"></div>
 			<div class="nav main-bgCol-fontFam">
@@ -55,15 +55,7 @@
 						<span class='arrow-span'>◆</span></a>
 						<div class="sort-wrap absol-0-0">
 							<ul class='sort-inner'>
-								<li class='sortBy-college'>按学院&nbsp;&gt;
-									<div class="BBoard"></div>
-									<ul class='col-list absol-0-0'>
-										<?php foreach ($this->col as $colKey => $colValue) { ?>
-										<li><a href='<?php echo $colValue['collegeUrl']; ?>'><?php echo $colValue['college']; ?></a></li>
-										<?php } ?>
-									</ul>
-								</li>
-								<li class='sortBy-category'>按功能&nbsp;&gt;
+								<li class='sortBy-category'>按分类&nbsp;&gt;
 									<div class="BBoard"></div>
 									<ul class='category-list absol-0-0'>
 										<?php foreach ($this->category as $catKey => $catValue) { ?>

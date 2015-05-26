@@ -549,10 +549,10 @@ $(function () {
             }).success(function (msg) {
                 if(msg == "sucess"){
                     data.code = true;
-                    $(this).next().next().next().html('<img src="/images/right-icon.png" align="absmiddle">');
+                    $('.code-res').html('<img src="/images/right-icon.png" align="absmiddle">');
                 }else{
                     data.code = false;
-                    $(this).next().next().next().html("验证码错误");
+                    $('.code-res').html("验证码错误");
                 }
             });
         }
@@ -588,7 +588,7 @@ $(function () {
             alert("请为图书选择一个或多个标签");
             return false;
         } else {
-            data.labels = label;
+            data.labels = $.trim(label);
         }
 
         //检测联系方式
