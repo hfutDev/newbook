@@ -226,19 +226,16 @@ li.sortBy-category{
 li.sortBy-lable{
     border-bottom: 2px solid #f1957d;
 }
-.sortBy-college,.sortBy-lable,.sortBy-category{
+.sortBy-lable,.sortBy-category{
 	width: 110px;
 }
-.sortBy-college,.sortBy-category{
+.sortBy-category{
 	border-bottom: 1px dashed #dc958f;
 }
 .col-list,.category-list,.lable-list{
 	padding: 4px 6px;
 	background: #fdf7e7;
 	border: 2px solid #ed7959;
-	/*box-shadow: inset 0 0 1px 1px #f4b19b;*/
-	/*-webkit-box-shadow: inset 0 0 1px 1px #f4b19b;*/
-	/*-webkit-box-shadow: inset 0 0 1px 1px #f4b19b;*/
 }
 .col-list li,.category-list li,.lable-list li{
 	width: 155px;

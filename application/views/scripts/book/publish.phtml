@@ -9,10 +9,10 @@
 	</a>
 	<div class="main-wrap">
 		<div class="sort-nav absol-0-0">
-			<h2>标签分类</h2>
 			<ul class="sort-by">
-				<li>学院
-					<ul class='main-col-list'>
+				<li>
+                    <h2>标签</h2>
+                    <ul class='main-col-list'>
 						<!-- 输出学院信息 start -->
 							<?php foreach ($this->col as $colValue) { ?>
 								<li><a href='<?php echo $colValue['collegeUrl']; ?>'><?php echo $colValue['college']; ?></a></li>
@@ -20,8 +20,9 @@
 					   <!-- 输出学院信息 end -->
 					</ul>
 				</li>
-				<li>标签
-					<ul class='main-lable-list'>
+				<li>
+                    <h2>标签</h2>
+                    <ul class='main-lable-list'>
 					<!-- 输出标签列表  start-->
 					<?php foreach ($this->hotLabel as $hotLabelValue) { ?>
 						  <li><a href='<?php echo $hotLabelValue['labelUrl']; ?>' title='<?php echo $hotLabelValue['label_name']; ?>' target="_blank"><?php echo $hotLabelValue['label_name']; ?></a></li>

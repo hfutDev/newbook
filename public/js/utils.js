@@ -292,7 +292,6 @@ $(function () {
         $(".sortBy-category").mouseover(function () {
             $(".BBoard")[0].style.display = "block";
             $(".BBoard")[1].style.display = "none";
-            $(".sortBy-college").find("ul").css({display: "none"});
             $(".sortBy-lable").find("ul").css({display: "none"});
             $(this).find("ul").css({
                 display: "block",
@@ -308,7 +307,6 @@ $(function () {
 
             $(".BBoard")[0].style.display = "none";
             $(".BBoard")[1].style.display = "block";
-            $(".sortBy-college").find("ul").css({display: "none"});
             $(".sortBy-category").find("ul").css({display: "none"});
             $(this).find("ul").css({
                 display: "block",
