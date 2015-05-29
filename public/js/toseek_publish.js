@@ -547,10 +547,10 @@ $(function () {
                     valCode: code
                 }
             }).success(function (msg) {
-                if(msg == "sucess"){
+                if (msg == "sucess") {
                     data.code = true;
                     $('.code-res').html('<img src="/images/right-icon.png" align="absmiddle">');
-                }else{
+                } else {
                     data.code = false;
                     $('.code-res').html("验证码错误");
                 }
@@ -601,28 +601,28 @@ $(function () {
         }
 
         //检测验证码
-        if(!data.code){
+        if (!data.code) {
             alert("请输入正确的验证码");
             return false;
         }
 
         data.des = $.trim($('.isbn-textarea').val());
         data.category = $('.for-isbn-class').val();
-        console.log(data);
+        //console.log(data);
 
-        //反正数据给你了，你想咋样就咋改
         $.ajax({
-           method: "POST",
-           url: "/book/publishbyisbn",
-           data: data
+            method: "POST",
+            url: "/book/publishbyisbn",
+            data: data
         }).success(function (msg) {
-            if (msg == 'success'){
-            } else if(msg == 'error'){
+            if (msg == 'success') {
+                alert("发布成功！");
+                window.location.replace("/book/publish");
+            } else if (msg == 'error') {
+                alert("发布失败！");
             }
-           //处理提交结果
-           if(msg){
-           }else{
-           }
+        }).error(function (msg) {
+            console.log(msg);
         });
     });
 
