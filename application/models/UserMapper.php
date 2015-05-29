@@ -108,6 +108,20 @@
         }
 
         /**
+         * 更新用户QQ
+         * @param  [num] $id   用户id
+         * @param  [string] $qq
+         * @return [num]      受影响的行数
+         */
+        public function updateQQ($id, $qq)
+        {
+            $where = $this->userDb->quoteInto('user_id = ?', $id);
+            $data = array('qq' => $qq);
+            $res = $this->user->update($data, $where);
+            return $res;
+        }
+
+        /**
          * 更新用户最后登录时间
          * @param  [num] $id  用户id
          * @return [num]      用户id

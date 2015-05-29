@@ -89,13 +89,14 @@
          * @param [string] $infor   卖书信息
          * @param [num] $fPrice  原价
          * @param [num] $nPrice  现价
-         * @param [num] $college 学院代码
+         * @param [num] $college 学院代码//取消
+         * @param [num] $category 分类
          * @param [num] $eTime   结束时间
          * @param [num] $uid     用户id
          * @param [string] $label   标签
          * @return [string] 发布结果信息
          */
-        public function addOne($bName, $publish, $infor, $fPrice, $nPrice, $college, $eTime, $uid, $label, $file)
+        public function addOne($bName, $publish, $infor, $fPrice, $nPrice, $category, $uid, $label, $file)
         {
             $image = new Application_Model_Image();
             $errInfo = false;
@@ -104,18 +105,19 @@
             $publish = $this->global->checkHtml($publish);
             $infor = $this->global->checkHtml($infor);
             $bookDate = array(
-                'book_name' => $bName, 
+                'book_name' => $bName,
                 'publish' => $publish,
                 'infor' => $infor,
                 'former_price' => $fPrice,
                 'now_price' => $nPrice,
-                'book_col' => $college
+                'book_category' => $category
+                //'book_col' => $college
                 );
-            $bInsertRes = $this->bookInfo->insertOne($bookDate);  //return book_id
+            $bInsertRes = $this->bookInfo->insertOne($bookDate); //return book_id
             //写入sale表，记录记录交易
             if ($bInsertRes) {
-                $sInsertRes = $this->sale->insertOne($bInsertRes, $uid, $eTime);
-                if ($sInsertRes) { 
+                $sInsertRes = $this->sale->insertOne($bInsertRes, $uid);
+                if ($sInsertRes) {
                     //处理标签
                     $labelRes = $this->label->addLabel($label);
                     if ($labelRes) {
@@ -133,6 +135,76 @@
                             } else {
                                 //回滚事务
                                 $delRes = $this->delInfo($bInsertRes, $sInsertRes, $labelRes, $saleBookLabelRes, $imageRes); 
+                                return $errInfo;
+                            }
+                        } else {
+                            $this->label->delLabel($labelRes);
+                            return $errInfo;
+                        }
+                    } else {
+                        $this->sale->delOne($saleId);
+                        return $errInfo;
+                    }
+                } else {
+                    $this->bookInfo->delOne($bInsertRes);
+                    return $errInfo;
+                }
+            } else {
+                return $errInfo;
+            }
+        }
+
+        /**
+         * ISBN发布
+         * @param [string] $bName   书名
+         * @param [string] $publish 出版社
+         * @param [string] $author  作者
+         * @param [string] $infor   卖书信息
+         * @param [num] $fPrice  原价
+         * @param [num] $nPrice  现价
+         * @param [num] $category 分类
+         * @param [num] $uid     用户id
+         * @param [string] $label   标签
+         * @return [string] 发布结果信息
+         */
+        public function addISBN($bName, $publish, $infor, $fPrice, $nPrice, $category, $uid, $label, $file)
+        {
+            $errInfo = false;
+            $sucInfo = true;
+            $bName = $this->global->checkHtml($bName);
+            $publish = $this->global->checkHtml($publish);
+            $infor = $this->global->checkHtml($infor);
+            $bookDate = array(
+                'book_name' => $bName,
+                'publish' => $publish,
+                'infor' => $infor,
+                'former_price' => $fPrice,
+                'now_price' => $nPrice,
+                'book_category' => $category
+                //'book_col' => $college
+                );
+            $bInsertRes = $this->bookInfo->insertOne($bookDate); //return book_id
+            //写入sale表，记录记录交易
+            if ($bInsertRes) {
+                $sInsertRes = $this->sale->insertOne($bInsertRes, $uid,'');
+                // return $bookDate;
+                if ($sInsertRes) {
+                    //处理标签
+                    $labelRes = $this->label->addLabel($label);
+                    if ($labelRes) {
+                        foreach ($labelRes as $k => $v) {
+                           $saleBookLabelRes[$k] = $this->saleBookLabel->insertOne($bInsertRes, $v);
+                        }
+                        if ($saleBookLabelRes) {
+                            //修改照片地址
+                            $imageData = array('photo_path' => $file);
+                            $imageRes = $this->bookInfo->updateOne($imageData, $bInsertRes);
+                            if ($imageRes) {
+                                return $sucInfo;
+                            } else {
+                                //回滚事务
+                                $imageRes = "";
+                                $delRes = $this->delInfo($bInsertRes, $sInsertRes, $labelRes, $saleBookLabelRes, $imageRes);
                                 return $errInfo;
                             }
                         } else {

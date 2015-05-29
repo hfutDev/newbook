@@ -58,7 +58,7 @@
         }
 
         /**
-         * 一键发布 信息处理
+         * 表单发布 信息处理
          */
         public function publishchkAction()
         {
@@ -79,13 +79,13 @@
             $press = $this->getRequest()->getParam('press'); 
             $originalPrice = $this->getRequest()->getParam('original-price');
             $nowPrice = $this->getRequest()->getParam('going-price');
-            $college = $this->getRequest()->getParam('college');
+            //$college = $this->getRequest()->getParam('college');
+            $category = $this->getRequest()->getParam('category');
             $bookDes = $this->getRequest()->getParam('bookdes');
-            $endTime = $this->getRequest()->getParam('expiration-date');
             $tel = $this->getRequest()->getParam('tel');
             $labelName = $this->getRequest()->getParam('get-lables');
             $file = $this->getRequest()->getParam('book-cover');
-            $publishRes = $book->addOne($bookName, $press, $bookDes, $originalPrice, $nowPrice, $college, $endTime, $uid, $labelName, $file);
+            $publishRes = $book->addOne($bookName, $press, $bookDes, $originalPrice, $nowPrice, $category, $uid, $labelName, $file);
             //更新用户电话号码
             $user = new Application_Model_UserMapper();
             $user->updateTel($uid, $tel);
@@ -97,6 +97,53 @@
                 $alertValue = array('a' => $failInfo);
                 $this->_forward('bad', 'global', null, $alertValue);
             }
+        }
+
+        /**
+         * ISBN发布
+         */
+        public function publishbyisbnAction()
+        {
+            //是否登录检测
+            if ($_SESSION['uid']) {
+                header('Location: http://online.hfut.edu.cn/404.php');
+                exit(1);
+            }
+
+            //检查提交方式
+            if ($this->getRequest()->isGet()) {
+                header('Location: http://online.hfut.edu.cn/404.php');
+                exit(1);
+            }
+            $uid = $_SESSION['uid'];
+            $book = new Application_Model_Book();
+            $bookName = $this->getRequest()->getParam('name');
+            $press = $this->getRequest()->getParam('publisher'); 
+            $originalPrice = $this->getRequest()->getParam('originPrice');
+            $nowPrice = $this->getRequest()->getParam('currentPrice');
+            //$college = $this->getRequest()->getParam('college');
+            $category = $this->getRequest()->getParam('category');
+            $bookDes = $this->getRequest()->getParam('des');
+            $tel = $this->getRequest()->getParam('tel');
+            $qq = $this->getRequest()->getParam('qq');
+            $labelName = $this->getRequest()->getParam('labels');
+            $file = $this->getRequest()->getParam('image');
+            $publishRes = $book->addISBN($bookName, $press, $bookDes, $originalPrice, $nowPrice, $category,$uid, $labelName, $file);
+            //更新用户电话号码或QQ
+            $user = new Application_Model_UserMapper();
+            if ($tel) {
+                $user->updateTel($uid, $tel);
+            }
+            else{
+                $user->updateQQ($uid, $qq);
+            }
+            
+            if ($publishRes) {
+                echo "success";
+            } else {
+                echo "error";
+            }
+            exit();
         }
 
         /**

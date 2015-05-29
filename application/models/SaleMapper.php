@@ -113,7 +113,7 @@
 	    		'sale_bookid' => $bookId,
 	    		'sale_userid' => $userId,
 	    		'start_time' => $startTime,
-	    		'end_time' => $endTime
+	    		// 'end_time' => $endTime
 	    		 );
 	    	$res = $this->sale->insert($data);
 	    	return $res;
