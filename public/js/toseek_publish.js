@@ -310,20 +310,20 @@ $(function () {
 
     // 卖书提交
     $('.publish-sumbit-btn').eq(1).click(function () {
-        var date = _date.val();
-        if ((date != "")) {
-            _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
-            dateChec = true;
-        } else {
-            _date.siblings("i").html('日期不能为空');
-            dateChec = false;
-        }
+        // var date = _date.val();
+        // if ((date != "")) {
+        //     _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
+        //     dateChec = true;
+        // } else {
+        //     _date.siblings("i").html('日期不能为空');
+        //     dateChec = false;
+        // }
         if ($('.update-file').hasClass('succ-update')) {
             file_val = true;
         } else {
             file_val = false;
         }
-        if (!(content & $('#validation_code_2').data('yeah') == 1 & bookname & press & ori_price & go_price & tel & dateChec & xueyuan & cus_label & file_val)) {
+        if (!(content & $('#validation_code_2').data('yeah') == 1 & bookname & press & ori_price & go_price & tel & xueyuan & cus_label & file_val)) {
             //	alert("content&valCode&bookname&press&ori_price&go_price&tel&dateChec&xueyuan&cus_label"+content+valCode+bookname+press+ori_price+go_price+tel+dateChec+xueyuan+cus_label)
             $('#book-des-text').add('#press').add('#tel')
                 .add('#bookname').add('.for-xueyuan').add('.cus-label').blur();
@@ -353,14 +353,14 @@ $(function () {
     });
     // 获赠提交
     $('.feedback-sumbit-btn').click(function () {
-        var date = _date.val();
-        if ((date != "")) {
-            _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
-            dateChec = true;
-        } else {
-            _date.siblings("i").html('日期不能为空');
-            dateChec = false;
-        }
+        // var date = _date.val();
+        // if ((date != "")) {
+        //     _date.siblings("i").html('<img src="/images/right-icon.png" align="absmiddle" />');
+        //     dateChec = true;
+        // } else {
+        //     _date.siblings("i").html('日期不能为空');
+        //     dateChec = false;
+        // }
         if (!(address & dateChec & doneename & content & $('#validation_code_2').data('yeah') == 1)) {
             $('#doneename').add('#address').add(".book-des-text-2").blur();
             // alert("address&dateChec&donatename&content&"+address+dateChec+doneename+content)
@@ -607,19 +607,23 @@ $(function () {
         }
 
         data.des = $.trim($('.isbn-textarea').val());
-        data.type = $('.for-isbn-class').val();
+        data.category = $('.for-isbn-class').val();
         console.log(data);
 
-        //$.ajax({
-        //    method: "POST",
-        //    url: "/global/vcodechk",
-        //    data: data
-        //}).success(function (msg) {
-        //    //处理提交结果
-        //    if(msg){
-        //    }else{
-        //    }
-        //});
+        //反正数据给你了，你想咋样就咋改
+        $.ajax({
+           method: "POST",
+           url: "/book/publishbyisbn",
+           data: data
+        }).success(function (msg) {
+            if (msg == 'success'){
+            } else if(msg == 'error'){
+            }
+           //处理提交结果
+           if(msg){
+           }else{
+           }
+        });
     });
 
 
