@@ -541,7 +541,7 @@ $(function () {
         var code = $(this).val();
         if (code.length == 4) {
             $.ajax({
-                method: "POST",
+                type: "POST",
                 url: "/global/vcodechk",
                 data: {
                     valCode: code
