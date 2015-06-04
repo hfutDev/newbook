@@ -42,12 +42,12 @@
     }
     
     //输出求书推荐书籍
-    $(document).ready(function(){
-        $('#bookname').blur(function(){
-            var val = $(this).val();
-            buyRelative(val);
-        })
-    })
+    //$(document).ready(function(){
+    //    $('#bookname').blur(function(){
+    //        var val = $(this).val();
+    //        buyRelative(val);
+    //    })
+    //})
     
     function buyRelative(d) {
     	//alert(d);
