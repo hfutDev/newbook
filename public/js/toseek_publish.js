@@ -611,7 +611,7 @@ $(function () {
         //console.log(data);
 
         $.ajax({
-            method: "POST",
+            type: "POST",
             url: "/book/publishbyisbn",
             data: data
         }).success(function (msg) {
