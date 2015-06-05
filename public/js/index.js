@@ -111,13 +111,14 @@
 			var $focus = $(this),
 				$picUl = $focus.find('ul'),  // ul
 				$liList = $picUl.children('li'); // li
-			var n=$liList.length, 
+			var n=$liList.length,
 				dir=settings.direction,
 				prop,
 				prop=dir==='left'?'width':'height', // 
 				txtH=parseInt(settings.txtHeight);  // 标题的高度
 			// alert(dir)
-			settings.width = parseInt($focus.width());   // 盒子的宽度
+        //settings.width = parseInt($focus.width());   // 盒子的宽度
+        settings.width = 678;   // 盒子的宽度
 			settings.height = parseInt($focus.height());
 			// 设置ul包裹区的高度或宽度
 			prop==='height'?($picUl.height(settings.height*n+"px")):($picUl.width(settings.width*n+"px"));
